@@ -49,7 +49,7 @@ public class USB300Writer implements Runnable {
                 data = queue.take();
 
                 /*
-                 * running could be set to false if an interruption occurrs.
+                 * running could be set to false if an interruption occurs.
                  * It could also be set to false through the stop function.
                  * To realize a 'stop' a dummy object is written to the queue, so the take above returns.
                  *

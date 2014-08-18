@@ -114,9 +114,9 @@ public class UserDataEEPA52001ToActuator extends UserData4BS {
      * @return Return the current temperature set point.
      * @throws UserDataScaleValueException if the data does not fit in expected range.
      */
-    public int getTemperatureSetpoint() throws UserDataScaleValueException {
+    public double getTemperatureSetpoint() throws UserDataScaleValueException {
         // The getScaleValue function will already test the ranges (min, max).
-        return (int) getScaleValue(Bits.getBitsFromBytes(getUserData(), OFFSET_SP, LENGTH_SP), MIN_RANGE_SP_TMP, MAX_RANGE_SP_TMP, MIN_SCALE_SP_TMP, MAX_SCALE_SP_TMP);
+        return getScaleValue(Bits.getBitsFromBytes(getUserData(), OFFSET_SP, LENGTH_SP), MIN_RANGE_SP_TMP, MAX_RANGE_SP_TMP, MIN_SCALE_SP_TMP, MAX_SCALE_SP_TMP);
     }
 
     /**
@@ -127,17 +127,17 @@ public class UserDataEEPA52001ToActuator extends UserData4BS {
      * @param temperature The current temperature set point.
      * @throws UserDataScaleValueException if the data does not fit in expected range.
      */
-    public void setTemperatureSetpoint(final int temperature) throws UserDataScaleValueException {
+    public void setTemperatureSetpoint(final double temperature) throws UserDataScaleValueException {
         // The getRangeValue function will already test the ranges (min, max).
         Bits.setBitsOfBytes(getRangeValue(temperature, MIN_SCALE_SP_TMP, MAX_SCALE_SP_TMP, MIN_RANGE_SP_TMP, MAX_RANGE_SP_TMP), getUserData(), OFFSET_SP, LENGTH_SP);
     }
 
-    public int getCurrentTemperature() throws UserDataScaleValueException {
+    public double getCurrentTemperature() throws UserDataScaleValueException {
         // The getScaleValue function will already test the ranges (min, max).
-        return (int) getScaleValue(Bits.getBitsFromBytes(getUserData(), OFFSET_TMP, LENGTH_TMP), MIN_RANGE_TMP, MAX_RANGE_TMP, MIN_SCALE_TMP, MAX_SCALE_TMP);
+        return getScaleValue(Bits.getBitsFromBytes(getUserData(), OFFSET_TMP, LENGTH_TMP), MIN_RANGE_TMP, MAX_RANGE_TMP, MIN_SCALE_TMP, MAX_SCALE_TMP);
     }
 
-    public void setCurrentTemperature(final int temperature) throws UserDataScaleValueException {
+    public void setCurrentTemperature(final double temperature) throws UserDataScaleValueException {
         // The getRangeValue function will already test the ranges (min, max).
         Bits.setBitsOfBytes(getRangeValue(temperature, MIN_SCALE_TMP, MAX_SCALE_TMP, MIN_RANGE_TMP, MAX_RANGE_TMP), getUserData(), OFFSET_TMP, LENGTH_TMP);
     }

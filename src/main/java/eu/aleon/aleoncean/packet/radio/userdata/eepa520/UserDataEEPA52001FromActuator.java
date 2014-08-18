@@ -172,9 +172,9 @@ public class UserDataEEPA52001FromActuator extends UserData4BS {
      * @return The current temperature (linear).
      * @throws UserDataScaleValueException if the value does not fit in defined range.
      */
-    public int getTemperature() throws UserDataScaleValueException {
+    public double getTemperature() throws UserDataScaleValueException {
         // The getScaleValue function will already test the ranges (min, max).
-        return (int) getScaleValue(Bits.getBitsFromBytes(getUserData(), OFFSET_TMP, LENGTH_TMP), MIN_RANGE_TMP, MAX_RANGE_TMP, MIN_SCALE_TMP, MAX_SCALE_TMP);
+        return getScaleValue(Bits.getBitsFromBytes(getUserData(), OFFSET_TMP, LENGTH_TMP), MIN_RANGE_TMP, MAX_RANGE_TMP, MIN_SCALE_TMP, MAX_SCALE_TMP);
     }
 
     /**
@@ -183,7 +183,7 @@ public class UserDataEEPA52001FromActuator extends UserData4BS {
      * @param temperature The current temperature (linear).
      * @throws UserDataScaleValueException if the value does not fit in defined range.
      */
-    public void setTemperature(final int temperature) throws UserDataScaleValueException {
+    public void setTemperature(final double temperature) throws UserDataScaleValueException {
         // The getRangeValue function will already test the ranges (min, max).
         Bits.setBitsOfBytes(getRangeValue(temperature, MIN_SCALE_TMP, MAX_SCALE_TMP, MIN_RANGE_TMP, MAX_RANGE_TMP), getUserData(), OFFSET_TMP, LENGTH_TMP);
     }
