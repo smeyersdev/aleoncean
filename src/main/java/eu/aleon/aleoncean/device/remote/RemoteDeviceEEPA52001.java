@@ -66,6 +66,16 @@ public class RemoteDeviceEEPA52001 extends StandardDevice implements RemoteDevic
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RemoteDeviceEEPA52001.class);
 
+    private static final int DFL_SEND_SETPOINT_POSITION = 50;
+    private static final double DFL_SEND_SETPOINT_TEMPERATURE = 20.0;
+    private static final double DFL_SEND_TEMPERATURE_ROOM = 20.0;
+    private static final boolean DFL_SEND_TEMPERATURE_CONTROLLED = false;
+    private static final boolean DFL_SEND_RUN_INIT_SEQUENCE = false;
+    private static final boolean DFL_SEND_LIFT_SET = false;
+    private static final boolean DFL_SEND_VALVE_OPEN = false;
+    private static final boolean DFL_SEND_VALVE_CLOSED = false;
+    private static final boolean DFL_SEND_REDUCED_ENERGY_CONSUMPTION = false;
+
     private Integer recvPosition;
     private Boolean recvServiceOn;
     private Boolean recvEnergyInputEnabled;
@@ -302,43 +312,76 @@ public class RemoteDeviceEEPA52001 extends StandardDevice implements RemoteDevic
         fireParameterChanged(DeviceParameter.TEMPERATURE_CONTROL_ENABLE, initiation, old, sendTemperatureControlled);
     }
 
+    private void setDefault(final boolean onlyIfUnset) {
+        if (!onlyIfUnset || getSendSetPointPosition() == null) {
+            setSendSetPointPosition(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_SETPOINT_POSITION);
+        }
+
+        if (!onlyIfUnset || getSendSetPointTemperature() == null) {
+            setSendSetPointTemperature(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_SETPOINT_TEMPERATURE);
+        }
+
+        if (!onlyIfUnset || getSendTemperatureControlled() == null) {
+            setSendTemperatureControlled(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_TEMPERATURE_CONTROLLED);
+        }
+
+        if (!onlyIfUnset || getSendTemperatureRoom() == null) {
+            setSendTemperatureRoom(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_TEMPERATURE_ROOM);
+        }
+
+        if (!onlyIfUnset || getSendRunInitSequence() == null) {
+            setSendRunInitSequence(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_RUN_INIT_SEQUENCE);
+        }
+
+        if (!onlyIfUnset || getSendLiftSet() == null) {
+            setSendLiftSet(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_LIFT_SET);
+        }
+
+        if (!onlyIfUnset || getSendValveOpen() == null) {
+            setSendValveOpen(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_VALVE_OPEN);
+        }
+
+        if (!onlyIfUnset || getSendValveClosed() == null) {
+            setSendValveClosed(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_VALVE_CLOSED);
+        }
+
+        if (!onlyIfUnset || getSendReducedEnergyConsumption() == null) {
+            setSendReducedEnergyConsumption(DeviceParameterUpdatedInitiation.INTERNAL_LOGIC, DFL_SEND_REDUCED_ENERGY_CONSUMPTION);
+        }
+    }
+
     private void sendPacket() {
-        final boolean isTemperatureControlled = getSendTemperatureControlled() == null ? false : getSendTemperatureControlled();
+        setDefault(true);
 
-        final UserDataEEPA52001ToActuator userData = new UserDataEEPA52001ToActuator();
-        userData.setTeachIn(false);
-
+        // Try to build and send packet.
         try {
-            if (isTemperatureControlled) {
-                if (getSendSetPointTemperature() == null) {
-                    return;
-                }
+            final UserDataEEPA52001ToActuator userData = new UserDataEEPA52001ToActuator();
+            userData.setTeachIn(false);
+
+            if (getSendTemperatureControlled()) {
                 userData.setSetPointSelection(SetPointSelection.TEMPERATURE);
                 userData.setTemperatureSetpoint(getSendSetPointTemperature());
             } else {
-                if (getSendSetPointPosition() == null) {
-                    return;
-                }
                 userData.setSetPointSelection(SetPointSelection.VALVE_POSITION);
                 userData.setValvePosition(getSendSetPointPosition());
             }
-            userData.setCurrentTemperature(getSendTemperatureRoom() == null ? 0 : getSendTemperatureRoom());
-            userData.setRunInitSequence(getSendRunInitSequence() == null ? false : getSendRunInitSequence());
-            userData.setLiftSet(getSendLiftSet() == null ? false : getSendLiftSet());
-            userData.setValveOpen(getSendValveOpen() == null ? false : getSendValveOpen());
-            userData.setValveClosed(getSendValveClosed() == null ? false : getSendValveClosed());
-            userData.setEnergyConsumotionReduced(getSendReducedEnergyConsumption() == null ? false : getSendReducedEnergyConsumption());
+
+            userData.setCurrentTemperature(getSendTemperatureRoom());
+            userData.setRunInitSequence(getSendRunInitSequence());
+            userData.setLiftSet(getSendLiftSet());
+            userData.setValveOpen(getSendValveOpen());
+            userData.setValveClosed(getSendValveClosed());
+            userData.setEnergyConsumotionReduced(getSendReducedEnergyConsumption());
             userData.setSetPointInverse(false);
             userData.setFunction(Function.RCU);
+            send(userData);
         } catch (UserDataScaleValueException ex) {
             LOGGER.warn("Fill user data failed.\n{}", ex);
             return;
         } catch (NullPointerException ex) {
-            LOGGER.warn("Do not send data, because a null value is not handled.\n{}", ex);
+            LOGGER.warn("Do not send data, because a null value is not handled.", ex);
             return;
         }
-
-        send(userData);
     }
 
     private void handleIncomingData(final RadioPacket4BS packet) {

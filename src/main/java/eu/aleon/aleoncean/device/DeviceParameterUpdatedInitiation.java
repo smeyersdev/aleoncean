@@ -16,5 +16,7 @@ package eu.aleon.aleoncean.device;
  */
 public enum DeviceParameterUpdatedInitiation {
 
-    RADIO_PACKET, SET_PARAMETER
+    RADIO_PACKET,
+    SET_PARAMETER,
+    INTERNAL_LOGIC
 }
