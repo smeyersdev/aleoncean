@@ -8,15 +8,12 @@
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
  */
-package eu.aleon.aleoncean.device;
+package eu.aleon.aleoncean.packet.radio.userdata.teachin4bs;
 
 /**
- *
  * @author Markus Rathgeb <maggu2810@gmail.com>
  */
-public enum DeviceParameterUpdatedInitiation {
+public enum LearnResult {
 
-    RADIO_PACKET,
-    SET_PARAMETER,
-    INTERNAL_LOGIC
+    SENDER_ID_DELETED_OR_NOT_STORED, SENDER_ID_STORED
 }

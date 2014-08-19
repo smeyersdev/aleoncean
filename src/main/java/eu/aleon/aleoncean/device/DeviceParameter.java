@@ -28,12 +28,15 @@ import java.util.List;
  * - ILLUMINATION_LUX: double, illumination, unit lux
  * - MOTION: boolean, motion
  * - OCCUPANCY_BUTTON: boolean, true: pressed, false: released
+ * - POSITION_PERCENT: integer, a position value, unit percent
  * - POWER_W: long, power value, unit watt
+ * - SETPOINT_POSITION_PERCENT: integer, a set point position value, unit percent
+ * - SETPOINT_TEMPERATURE_CELSIUS: double, a set point temperature value, unit celsius
  * - SUPPLY_VOLTAGE_V: double, unit volt
  * - SWITCH: boolean, true: on, false: off
  * - TEMPERATURE_CELSIUS: double, temperature, unit degree Celsius
- * - VALVE_POS_LAST: integer, the last received valve position
- * - VALVE_POS_NEW: integer, the new to set valve position
+ * - TEMPERATURE_CONTROL_ENABLE: boolean, flag if a temperature control algorithm is enabled
+ * - TEMPERATURE_CONTROL_CUR_TEMP: double, the current temperature used for a temperature control algorithm
  * - WINDOW_HANDLE_POSITION: WindowHandlePosition
  *
  * @author Markus Rathgeb <maggu2810@gmail.com>
@@ -47,19 +50,41 @@ public enum DeviceParameter {
     ILLUMINATION_LUX,
     MOTION,
     OCCUPANCY_BUTTON,
+    POSITION_PERCENT,
     POWER_W,
+    SETPOINT_POSITION_PERCENT,
+    SETPOINT_TEMPERATURE_CELSIUS,
     SUPPLY_VOLTAGE_V,
     SWITCH,
     TEMPERATURE_CELSIUS,
-    VALVE_POS_LAST,
-    VALVE_POS_NEW,
-    WINDOW_HANDLE_POSITION;
+    TEMPERATURE_CONTROL_ENABLE,
+    TEMPERATURE_CONTROL_CUR_TEMP,
+    WINDOW_HANDLE_POSITION,
+
+    TMP_RECV_SERVICE_ON,
+    TMP_RECV_ENERGY_INPUT_ENABLED,
+    TMP_RECV_ENERGY_STORAGE_SUFFICIENT,
+    TMP_RECV_CHANGE_BATTERY,
+    TMP_RECV_COVER_OPEN,
+    TMP_RECV_TEMPERATURE_SENSOR_FAILURE,
+    TMP_RECV_WINDOW_OPEN,
+    TMP_RECV_ACTUATOR_OBSTRUCTED,
+    TMP_SEND_RUN_INIT_SEQUENCE,
+    TMP_SEND_LIFT_SET,
+    TMP_SEND_VALVE_OPEN,
+    TMP_SEND_VALVE_CLOSED,
+    TMP_SEND_REDUCED_ENERGY_CONSUMPTION;
 
     private static class Info {
 
         private final DeviceParameter parameter;
         private final Class<?> clazz;
         private final String name;
+
+        public Info(final DeviceParameter parameter,
+                    final Class<?> clazz) {
+            this(parameter, parameter.name(), clazz);
+        }
 
         public Info(final DeviceParameter parameter,
                     final String name,
@@ -84,22 +109,39 @@ public enum DeviceParameter {
 
     private static class Infos {
 
-        private static final List<Info> INFOS = Collections.unmodifiableList(Arrays.asList(
-                new Info(DeviceParameter.BUTTON_DIM_A, "BUTTON_DIM_A", RockerSwitchAction.class),
-                new Info(DeviceParameter.BUTTON_DIM_B, "BUTTON_DIM_B", RockerSwitchAction.class),
-                new Info(DeviceParameter.ENERGY_WS, "ENERGY_WS", Long.class),
-                new Info(DeviceParameter.HUMIDITY_PERCENT, "HUMIDITY_PERCENT", Double.class),
-                new Info(DeviceParameter.ILLUMINATION_LUX, "ILLUMINATION_LUX", Double.class),
-                new Info(DeviceParameter.MOTION, "MOTION", Boolean.class),
-                new Info(DeviceParameter.OCCUPANCY_BUTTON, "OCCUPANCY_BUTTON", Boolean.class),
-                new Info(DeviceParameter.POWER_W, "POWER_W", Long.class),
-                new Info(DeviceParameter.SUPPLY_VOLTAGE_V, "SUPPLY_VOLTAGE_V", Double.class),
-                new Info(DeviceParameter.SWITCH, "SWITCH", Boolean.class),
-                new Info(DeviceParameter.TEMPERATURE_CELSIUS, "TEMPERATURE_CELSIUS", Double.class),
-                new Info(DeviceParameter.VALVE_POS_LAST, "VALVE_POS_LAST", Integer.class),
-                new Info(DeviceParameter.VALVE_POS_NEW, "VALVE_POS_NEW", Integer.class),
-                new Info(DeviceParameter.WINDOW_HANDLE_POSITION, "WINDOW_HANDLE_POSITION", WindowHandlePosition.class)
-        ));
+        private static final List<Info> INFOS = Collections.unmodifiableList(Arrays
+                .asList(
+                        new Info(DeviceParameter.BUTTON_DIM_A, "BUTTON_DIM_A", RockerSwitchAction.class),
+                        new Info(DeviceParameter.BUTTON_DIM_B, "BUTTON_DIM_B", RockerSwitchAction.class),
+                        new Info(DeviceParameter.ENERGY_WS, "ENERGY_WS", Long.class),
+                        new Info(DeviceParameter.HUMIDITY_PERCENT, "HUMIDITY_PERCENT", Double.class),
+                        new Info(DeviceParameter.ILLUMINATION_LUX, "ILLUMINATION_LUX", Double.class),
+                        new Info(DeviceParameter.MOTION, "MOTION", Boolean.class),
+                        new Info(DeviceParameter.OCCUPANCY_BUTTON, "OCCUPANCY_BUTTON", Boolean.class),
+                        new Info(DeviceParameter.POSITION_PERCENT, Integer.class),
+                        new Info(DeviceParameter.POWER_W, "POWER_W", Long.class),
+                        new Info(DeviceParameter.SETPOINT_POSITION_PERCENT, Integer.class),
+                        new Info(DeviceParameter.SETPOINT_TEMPERATURE_CELSIUS, Double.class),
+                        new Info(DeviceParameter.SUPPLY_VOLTAGE_V, "SUPPLY_VOLTAGE_V", Double.class),
+                        new Info(DeviceParameter.SWITCH, "SWITCH", Boolean.class),
+                        new Info(DeviceParameter.TEMPERATURE_CELSIUS, "TEMPERATURE_CELSIUS", Double.class),
+                        new Info(DeviceParameter.TEMPERATURE_CONTROL_CUR_TEMP, Double.class),
+                        new Info(DeviceParameter.TEMPERATURE_CONTROL_ENABLE, Boolean.class),
+                        new Info(DeviceParameter.WINDOW_HANDLE_POSITION, "WINDOW_HANDLE_POSITION", WindowHandlePosition.class),
+                        new Info(DeviceParameter.TMP_RECV_SERVICE_ON, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_ENERGY_INPUT_ENABLED, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_ENERGY_STORAGE_SUFFICIENT, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_CHANGE_BATTERY, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_COVER_OPEN, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_TEMPERATURE_SENSOR_FAILURE, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_WINDOW_OPEN, Boolean.class),
+                        new Info(DeviceParameter.TMP_RECV_ACTUATOR_OBSTRUCTED, Boolean.class),
+                        new Info(DeviceParameter.TMP_SEND_RUN_INIT_SEQUENCE, Boolean.class),
+                        new Info(DeviceParameter.TMP_SEND_LIFT_SET, Boolean.class),
+                        new Info(DeviceParameter.TMP_SEND_VALVE_OPEN, Boolean.class),
+                        new Info(DeviceParameter.TMP_SEND_VALVE_CLOSED, Boolean.class),
+                        new Info(DeviceParameter.TMP_SEND_REDUCED_ENERGY_CONSUMPTION, Boolean.class)
+                ));
 
         public static Info getByParameter(final DeviceParameter parameter) {
             for (final Info info : INFOS) {

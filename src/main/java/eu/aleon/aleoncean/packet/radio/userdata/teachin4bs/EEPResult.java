@@ -8,15 +8,12 @@
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
  */
-package eu.aleon.aleoncean.device;
+package eu.aleon.aleoncean.packet.radio.userdata.teachin4bs;
 
 /**
- *
  * @author Markus Rathgeb <maggu2810@gmail.com>
  */
-public enum DeviceParameterUpdatedInitiation {
+public enum EEPResult {
 
-    RADIO_PACKET,
-    SET_PARAMETER,
-    INTERNAL_LOGIC
+    EEP_NOT_SUPPORTED, EEP_SUPPORTED
 }

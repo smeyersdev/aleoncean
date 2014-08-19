@@ -8,15 +8,22 @@
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
  */
-package eu.aleon.aleoncean.device;
+package eu.aleon.aleoncean.packet.radio.userdata.teachin4bs;
+
+import eu.aleon.aleoncean.values.LearnType4BS;
 
 /**
- *
  * @author Markus Rathgeb <maggu2810@gmail.com>
  */
-public enum DeviceParameterUpdatedInitiation {
+public class UserData4BSTeachInVariant1 extends UserData4BSTeachIn {
 
-    RADIO_PACKET,
-    SET_PARAMETER,
-    INTERNAL_LOGIC
+    public UserData4BSTeachInVariant1() {
+        super();
+        setLearnType(LearnType4BS.WITHOUT_EEP_NUM_WITHOUT_MANU_ID);
+    }
+
+    public UserData4BSTeachInVariant1(byte[] data) {
+        super(data);
+    }
+
 }
