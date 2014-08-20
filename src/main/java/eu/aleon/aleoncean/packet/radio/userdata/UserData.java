@@ -10,6 +10,7 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata;
 
+import java.util.Arrays;
 import eu.aleon.aleoncean.packet.RadioPacket;
 import eu.aleon.aleoncean.util.Bits;
 import eu.aleon.aleoncean.util.CalculationUtil;
@@ -184,6 +185,11 @@ public abstract class UserData {
 
         final long raw = CalculationUtil.scaleToRange(scale, scaleMin, scaleMax, rangeMin, rangeMax);
         return raw;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("UserData{data=%s}", Arrays.toString(userData));
     }
 
     public abstract RadioPacket generateRadioPacket();
