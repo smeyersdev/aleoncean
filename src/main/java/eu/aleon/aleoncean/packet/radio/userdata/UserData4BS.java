@@ -51,4 +51,11 @@ public class UserData4BS extends UserData {
         return packet;
     }
 
+    @Override
+    public String toString() {
+        return String.format("UserData4BS{%s, teachIn=%b}",
+                             super.toString(),
+                             isTeachIn());
+    }
+
 }
