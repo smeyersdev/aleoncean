@@ -95,4 +95,13 @@ public class UserData4BSTeachInVariant3 extends UserData4BSTeachIn {
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format("UserData4BSTeachInVariant3{%s, eepResult=%s, learnResult=%s, learnStatus=%s}",
+                             super.toString(),
+                             getEEPResult(),
+                             getLearnResult(),
+                             getLearnStatus());
+    }
+
 }

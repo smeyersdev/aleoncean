@@ -31,6 +31,7 @@ public abstract class UserData4BSTeachIn extends UserData4BS {
 
     public UserData4BSTeachIn() {
         super();
+        setTeachIn(true);
     }
 
     public UserData4BSTeachIn(final byte[] data) {
@@ -80,6 +81,16 @@ public abstract class UserData4BSTeachIn extends UserData4BS {
             default:
                 throw new IllegalArgumentException("Case not handled: " + learnType);
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("UserData4BSTeachIn{%s, func=0x%02X, type=0x%02X, manufacturerId=0x%04X, learnType=%s}",
+                             super.toString(),
+                             getFunc(),
+                             getType(),
+                             getManufacturerId(),
+                             getLearnType());
     }
 
 }
