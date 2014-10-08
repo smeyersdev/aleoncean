@@ -10,6 +10,7 @@
  */
 package eu.aleon.aleoncean.device;
 
+import eu.aleon.aleoncean.device.local.LocalDeviceEEPA53808CMD02;
 import eu.aleon.aleoncean.device.local.LocalDeviceEEPF60201;
 import eu.aleon.aleoncean.device.local.LocalDeviceEEPF60202;
 import eu.aleon.aleoncean.device.remote.RemoteDeviceEEPA50205;
@@ -43,6 +44,7 @@ public class DeviceFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DeviceFactory.class);
 
+    private static final String LD_A53808CMD2 = "LD_A5-38-08_CMD02";
     private static final String LD_F60201 = "LD_F6-02-01";
     private static final String LD_F60202 = "LD_F6-02-02";
     private static final String RD_A50205 = "RD_A5-02-05";
@@ -58,6 +60,7 @@ public class DeviceFactory {
     private static final NavigableMap<String, Class<? extends StandardDevice>> MAP = new TreeMap<>();
 
     static {
+        MAP.put(LD_A53808CMD2, LocalDeviceEEPA53808CMD02.class);
         MAP.put(LD_F60201, LocalDeviceEEPF60201.class);
         MAP.put(LD_F60202, LocalDeviceEEPF60202.class);
         MAP.put(RD_A50205, RemoteDeviceEEPA50205.class);
