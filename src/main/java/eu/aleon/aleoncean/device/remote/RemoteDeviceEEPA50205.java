@@ -40,7 +40,7 @@ public class RemoteDeviceEEPA50205 extends StandardDevice implements RemoteDevic
                                  final EnOceanId addressLocal) {
         super(conn, addressRemote, addressLocal);
     }
-    
+
     public Double getTemperature() {
         return temperature;
     }
@@ -58,7 +58,7 @@ public class RemoteDeviceEEPA50205 extends StandardDevice implements RemoteDevic
         }
 
         final UserDataEEPA50205 userData = new UserDataEEPA50205(packet.getUserDataRaw());
-        
+
         try {
             setTemperature(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.getTemperature());
         } catch (UserDataScaleValueException ex) {

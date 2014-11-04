@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eu.aleon.aleoncean.device.remote;
 
@@ -38,7 +38,7 @@ public class RemoteDeviceEEPA50205Test {
      */
     @Before
     public void setUp() throws Exception {
-        
+
     }
 
     /**
