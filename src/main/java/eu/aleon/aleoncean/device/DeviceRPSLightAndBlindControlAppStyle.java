@@ -10,6 +10,11 @@
  */
 package eu.aleon.aleoncean.device;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS;
 import eu.aleon.aleoncean.packet.radio.userdata.UserDataEEPF602LightAndBlindControlT2N;
@@ -20,11 +25,6 @@ import eu.aleon.aleoncean.values.EnergyBow;
 import eu.aleon.aleoncean.values.RockerSwitchAction;
 import eu.aleon.aleoncean.values.RockerSwitchButton;
 import eu.aleon.aleoncean.values.RockerSwitchState;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

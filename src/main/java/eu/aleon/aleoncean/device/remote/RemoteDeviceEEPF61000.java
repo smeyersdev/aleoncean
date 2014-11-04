@@ -10,6 +10,9 @@
  */
 package eu.aleon.aleoncean.device.remote;
 
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.DeviceParameter;
 import eu.aleon.aleoncean.device.DeviceParameterUpdatedInitiation;
 import eu.aleon.aleoncean.device.DeviceRPS;
@@ -23,9 +26,6 @@ import eu.aleon.aleoncean.packet.radio.userdata.UserDataRPS;
 import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
 import eu.aleon.aleoncean.values.WindowHandlePosition;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

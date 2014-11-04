@@ -10,14 +10,14 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.NUState;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.T21State;
 import eu.aleon.aleoncean.util.MapUtil;
 import eu.aleon.aleoncean.values.EnergyBow;
 import eu.aleon.aleoncean.values.RockerSwitchButton;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *

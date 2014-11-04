@@ -10,12 +10,12 @@
  */
 package eu.aleon.aleoncean.device;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.RadioPacket;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

@@ -10,11 +10,11 @@
  */
 package eu.aleon.aleoncean.device;
 
-import eu.aleon.aleoncean.values.RockerSwitchAction;
-import eu.aleon.aleoncean.values.WindowHandlePosition;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import eu.aleon.aleoncean.values.RockerSwitchAction;
+import eu.aleon.aleoncean.values.WindowHandlePosition;
 
 /**
  * Collection of device parameters.

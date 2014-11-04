@@ -10,11 +10,11 @@
  */
 package eu.aleon.aleoncean.packet;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import eu.aleon.aleoncean.packet.response.NoDataResponse;
 import eu.aleon.aleoncean.packet.response.Response;
 import eu.aleon.aleoncean.packet.response.UnknownResponseException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 /**
  * Representation of a RADIO packet.

@@ -10,14 +10,14 @@
  */
 package eu.aleon.aleoncean.packet;
 
-import eu.aleon.aleoncean.packet.response.Response;
-import eu.aleon.aleoncean.packet.response.UnknownResponseException;
-import eu.aleon.aleoncean.util.CRC8;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import eu.aleon.aleoncean.packet.response.Response;
+import eu.aleon.aleoncean.packet.response.UnknownResponseException;
+import eu.aleon.aleoncean.util.CRC8;
 
 /**
  * Representation of a ESP3 packet.

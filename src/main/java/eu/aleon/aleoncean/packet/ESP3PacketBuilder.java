@@ -10,10 +10,10 @@
  */
 package eu.aleon.aleoncean.packet;
 
-import eu.aleon.aleoncean.util.CRC8;
-import eu.aleon.aleoncean.util.CircularByteBuffer;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import eu.aleon.aleoncean.util.CRC8;
+import eu.aleon.aleoncean.util.CircularByteBuffer;
 
 /**
  *

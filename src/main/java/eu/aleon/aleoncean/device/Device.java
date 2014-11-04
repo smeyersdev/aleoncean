@@ -10,9 +10,9 @@
  */
 package eu.aleon.aleoncean.device;
 
+import java.util.Set;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.RadioPacket;
-import java.util.Set;
 
 /**
  *

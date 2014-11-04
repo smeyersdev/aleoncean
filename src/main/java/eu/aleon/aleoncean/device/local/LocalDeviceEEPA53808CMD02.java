@@ -10,6 +10,9 @@
  */
 package eu.aleon.aleoncean.device.local;
 
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.DeviceParameter;
 import eu.aleon.aleoncean.device.DeviceParameterUpdatedInitiation;
 import eu.aleon.aleoncean.device.IllegalDeviceParameterException;
@@ -21,9 +24,6 @@ import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
 import eu.aleon.aleoncean.packet.radio.userdata.eepa53808.DimmingRange;
 import eu.aleon.aleoncean.packet.radio.userdata.eepa53808.UserDataEEPA53808CMD02;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Markus Rathgeb <maggu2810@gmail.com>

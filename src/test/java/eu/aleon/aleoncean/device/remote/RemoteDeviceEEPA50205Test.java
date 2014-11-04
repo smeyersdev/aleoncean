@@ -3,15 +3,16 @@
  */
 package eu.aleon.aleoncean.device.remote;
 
-import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
-import eu.aleon.aleoncean.packet.radio.RadioPacket4BS;
-import eu.aleon.aleoncean.packet.radio.userdata.UserDataEEPA50205;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import eu.aleon.aleoncean.packet.radio.RadioPacket4BS;
+import eu.aleon.aleoncean.packet.radio.userdata.UserDataEEPA50205;
+import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
 
 /**
  * @author Thomas Stezaly (thomas.stezaly@aleuon.eu)

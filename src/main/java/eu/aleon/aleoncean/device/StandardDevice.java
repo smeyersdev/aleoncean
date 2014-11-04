@@ -10,14 +10,14 @@
  */
 package eu.aleon.aleoncean.device;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.RadioPacket;
 import eu.aleon.aleoncean.packet.ResponsePacket;
 import eu.aleon.aleoncean.packet.radio.userdata.UserData;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  *

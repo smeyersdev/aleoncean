@@ -10,11 +10,11 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata;
 
-import eu.aleon.aleoncean.values.Unit;
-import eu.aleon.aleoncean.values.VOCIdentification;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import eu.aleon.aleoncean.values.Unit;
+import eu.aleon.aleoncean.values.VOCIdentification;
 
 /**
  *

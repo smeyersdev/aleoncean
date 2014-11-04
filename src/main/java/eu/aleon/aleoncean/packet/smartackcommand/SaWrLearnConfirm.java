@@ -10,6 +10,10 @@
  */
 package eu.aleon.aleoncean.packet.smartackcommand;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.ResponsePacket;
 import eu.aleon.aleoncean.packet.ResponseReturnCode;
@@ -20,10 +24,6 @@ import eu.aleon.aleoncean.packet.response.Response;
 import eu.aleon.aleoncean.packet.response.UnknownResponseException;
 import eu.aleon.aleoncean.util.CalculationUtil;
 import eu.aleon.aleoncean.values.LearnInOutMode;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

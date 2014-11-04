@@ -10,8 +10,8 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata.eepa53808;
 
-import eu.aleon.aleoncean.util.Bits;
 import eu.aleon.aleoncean.packet.radio.userdata.UserData4BS;
+import eu.aleon.aleoncean.util.Bits;
 
 /**
  * @author Markus Rathgeb <maggu2810@gmail.com>

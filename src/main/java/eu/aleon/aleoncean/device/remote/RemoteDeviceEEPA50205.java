@@ -10,6 +10,9 @@
  */
 package eu.aleon.aleoncean.device.remote;
 
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.DeviceParameter;
 import eu.aleon.aleoncean.device.DeviceParameterUpdatedInitiation;
 import eu.aleon.aleoncean.device.IllegalDeviceParameterException;
@@ -21,9 +24,6 @@ import eu.aleon.aleoncean.packet.radio.RadioPacket4BS;
 import eu.aleon.aleoncean.packet.radio.userdata.UserDataEEPA50205;
 import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

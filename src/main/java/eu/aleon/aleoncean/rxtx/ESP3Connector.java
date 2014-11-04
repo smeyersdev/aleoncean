@@ -10,9 +10,9 @@
  */
 package eu.aleon.aleoncean.rxtx;
 
+import java.util.concurrent.TimeUnit;
 import eu.aleon.aleoncean.packet.ESP3Packet;
 import eu.aleon.aleoncean.packet.ResponsePacket;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Interface for a ESP3 based EnOcean (read / write) hardware connection.

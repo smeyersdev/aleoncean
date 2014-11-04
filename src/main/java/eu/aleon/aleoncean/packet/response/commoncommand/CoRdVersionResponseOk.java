@@ -10,11 +10,11 @@
  */
 package eu.aleon.aleoncean.packet.response.commoncommand;
 
-import eu.aleon.aleoncean.packet.EnOceanId;
-import eu.aleon.aleoncean.packet.response.Response;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
+import eu.aleon.aleoncean.packet.EnOceanId;
+import eu.aleon.aleoncean.packet.response.Response;
 
 /**
  *

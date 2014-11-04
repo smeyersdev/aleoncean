@@ -10,12 +10,12 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.NUState;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.T21State;
 import eu.aleon.aleoncean.util.Bits;
 import eu.aleon.aleoncean.values.WindowHandlePosition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

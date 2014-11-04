@@ -10,10 +10,10 @@
  */
 package eu.aleon.aleoncean.packet.radio;
 
+import java.util.Arrays;
 import eu.aleon.aleoncean.packet.RadioChoice;
 import eu.aleon.aleoncean.packet.RadioPacketVariableLength;
 import eu.aleon.aleoncean.packet.radio.userdata.UserDataVLD;
-import java.util.Arrays;
 
 /**
  *
