@@ -30,10 +30,10 @@ public class CoRdIdBase extends CommonCommandPacket {
     }
 
     @Override
-    public Response inspectResponsePacket(ResponsePacket packet) throws UnknownResponseException {
+    public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         switch (packet.getReturnCode()) {
             case ResponseReturnCode.RET_OK:
-                CoRdIdBaseResponseOk response = new CoRdIdBaseResponseOk();
+                final CoRdIdBaseResponseOk response = new CoRdIdBaseResponseOk();
                 response.fromResponsePacket(packet);
                 return response;
 

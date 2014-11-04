@@ -10,9 +10,9 @@
  */
 package eu.aleon.aleoncean.packet;
 
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,8 +48,8 @@ public class EnOceanIdTest {
     @Test
     public void testFill_String() {
         System.out.println("fill");
-        String id = "00:83:C0:F4";
-        EnOceanId instance = new EnOceanId();
+        final String id = "00:83:C0:F4";
+        final EnOceanId instance = new EnOceanId();
         instance.fill(id);
         assertEquals(instance.getLong(), 0x0083C0F4L);
     }

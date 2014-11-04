@@ -27,9 +27,9 @@ public class USB300ReaderListener extends USB300Reader implements SerialPortEven
 
     private static final Logger LOGGER = LoggerFactory.getLogger(USB300ReaderListener.class);
 
-    public USB300ReaderListener(SerialPort serialPort,
-                                BlockingQueue<byte[]> queue,
-                                BlockingQueue<byte[]> queueResponse) throws IOException {
+    public USB300ReaderListener(final SerialPort serialPort,
+                                final BlockingQueue<byte[]> queue,
+                                final BlockingQueue<byte[]> queueResponse) throws IOException {
         super(serialPort, queue, queueResponse);
     }
 
@@ -37,7 +37,7 @@ public class USB300ReaderListener extends USB300Reader implements SerialPortEven
     public boolean start() {
         try {
             serialPort.addEventListener(this);
-        } catch (TooManyListenersException ex) {
+        } catch (final TooManyListenersException ex) {
             LOGGER.warn("Cannot add event listener.", ex);
             return false;
         }
@@ -55,7 +55,7 @@ public class USB300ReaderListener extends USB300Reader implements SerialPortEven
     }
 
     @Override
-    public void serialEvent(SerialPortEvent ev) {
+    public void serialEvent(final SerialPortEvent ev) {
         switch (ev.getEventType()) {
             case SerialPortEvent.BI:
             case SerialPortEvent.OE:
@@ -75,7 +75,7 @@ public class USB300ReaderListener extends USB300Reader implements SerialPortEven
                             break;
                         }
                     }
-                } catch (IOException ex) {
+                } catch (final IOException ex) {
                     LOGGER.warn("I/O exception on read.", ex);
                 }
                 break;

@@ -10,6 +10,10 @@
  */
 package eu.aleon.aleoncean.packet.smartackcommand;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.ResponsePacket;
 import eu.aleon.aleoncean.packet.ResponseReturnCode;
@@ -20,10 +24,6 @@ import eu.aleon.aleoncean.packet.response.Response;
 import eu.aleon.aleoncean.packet.response.UnknownResponseException;
 import eu.aleon.aleoncean.util.CalculationUtil;
 import eu.aleon.aleoncean.values.LearnInOutMode;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -49,8 +49,8 @@ public class SaWrLearnConfirm extends SmartAckCommandPacket {
     }
 
     @Override
-    public void setSmartAckData(byte[] smartAckData) {
-        ByteBuffer bb = ByteBuffer.wrap(smartAckData);
+    public void setSmartAckData(final byte[] smartAckData) {
+        final ByteBuffer bb = ByteBuffer.wrap(smartAckData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         setResponseTime(((int) bb.getShort()) & 0xFFFF);
@@ -68,7 +68,7 @@ public class SaWrLearnConfirm extends SmartAckCommandPacket {
                 break;
         }
 
-        byte[] enOceanId = new byte[EnOceanId.LENGTH];
+        final byte[] enOceanId = new byte[EnOceanId.LENGTH];
 
         bb.get(enOceanId);
         setPostmasterCandidateId(new EnOceanId(enOceanId));
@@ -85,7 +85,7 @@ public class SaWrLearnConfirm extends SmartAckCommandPacket {
                                           + EnOceanId.LENGTH /* smart ack client id */;
 
         final byte[] rawSmartAckData = new byte[rawSmartAckDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawSmartAckData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawSmartAckData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.putShort((short) getResponseTime());

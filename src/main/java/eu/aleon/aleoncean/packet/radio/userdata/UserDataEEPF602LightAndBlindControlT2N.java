@@ -10,14 +10,14 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.NUState;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.T21State;
 import eu.aleon.aleoncean.util.MapUtil;
 import eu.aleon.aleoncean.values.EnergyBow;
 import eu.aleon.aleoncean.values.RockerSwitchButton;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -44,7 +44,7 @@ public abstract class UserDataEEPF602LightAndBlindControlT2N extends UserDataRPS
         super(T21State.PTM_TYPE2, NUState.NORMALMESSAGE);
     }
 
-    public UserDataEEPF602LightAndBlindControlT2N(byte[] eepData) {
+    public UserDataEEPF602LightAndBlindControlT2N(final byte[] eepData) {
         super(eepData, T21State.PTM_TYPE2, NUState.NORMALMESSAGE);
     }
 
@@ -88,14 +88,14 @@ public abstract class UserDataEEPF602LightAndBlindControlT2N extends UserDataRPS
         return getDataBit(0, POS_IS_2ND_ACTION_VALID) == 1;
     }
 
-    public void set2ndActionValid(boolean valid) {
+    public void set2ndActionValid(final boolean valid) {
         setDataBit(0, POS_IS_2ND_ACTION_VALID, valid);
     }
 
     public boolean isButtonAI() {
         try {
             return RockerSwitchButton.AI == getRocker1stAction() || (is2ndActionValid() && RockerSwitchButton.AI == getRocker2ndAction());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             return false;
         }
     }
@@ -103,7 +103,7 @@ public abstract class UserDataEEPF602LightAndBlindControlT2N extends UserDataRPS
     public boolean isButtonAO() {
         try {
             return RockerSwitchButton.AO == getRocker1stAction() || (is2ndActionValid() && RockerSwitchButton.AO == getRocker2ndAction());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             return false;
         }
     }
@@ -111,7 +111,7 @@ public abstract class UserDataEEPF602LightAndBlindControlT2N extends UserDataRPS
     public boolean isButtonBI() {
         try {
             return RockerSwitchButton.BI == getRocker1stAction() || (is2ndActionValid() && RockerSwitchButton.BI == getRocker2ndAction());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             return false;
         }
     }
@@ -119,7 +119,7 @@ public abstract class UserDataEEPF602LightAndBlindControlT2N extends UserDataRPS
     public boolean isButtonBO() {
         try {
             return RockerSwitchButton.BO == getRocker1stAction() || (is2ndActionValid() && RockerSwitchButton.BO == getRocker2ndAction());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             return false;
         }
     }

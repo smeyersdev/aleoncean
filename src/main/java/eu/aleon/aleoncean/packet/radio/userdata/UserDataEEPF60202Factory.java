@@ -21,7 +21,7 @@ public class UserDataEEPF60202Factory {
     private UserDataEEPF60202Factory() {
     }
 
-    public static UserDataRPS getPacketData(RadioPacketRPS packet) {
+    public static UserDataRPS getPacketData(final RadioPacketRPS packet) {
         if (packet.getT21State() == RadioPacketRPS.T21State.PTM_TYPE2 && packet.getNUState() == RadioPacketRPS.NUState.NORMALMESSAGE) {
             return new UserDataEEPF60202T2N(packet.getUserDataRaw());
         } else if (packet.getT21State() == RadioPacketRPS.T21State.PTM_TYPE2 && packet.getNUState() == RadioPacketRPS.NUState.UNASSIGNEDMESSAGE) {

@@ -35,7 +35,7 @@ public class CommonCommandPacket extends ESP3Packet {
     }
 
     @Override
-    public void setData(byte[] data) {
+    public void setData(final byte[] data) {
         int pos = 0;
         byte[] tmp;
 
@@ -58,7 +58,7 @@ public class CommonCommandPacket extends ESP3Packet {
                                   + rawCommonCommandData.length;
 
         final byte[] rawData = new byte[rawDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(getCommonCommandCode());
@@ -71,7 +71,7 @@ public class CommonCommandPacket extends ESP3Packet {
         return commonCommandCode;
     }
 
-    public final void setCommonCommandCode(byte commonCommandCode) {
+    public final void setCommonCommandCode(final byte commonCommandCode) {
         this.commonCommandCode = commonCommandCode;
     }
 
@@ -79,7 +79,7 @@ public class CommonCommandPacket extends ESP3Packet {
         return commonCommandData;
     }
 
-    public void setCommonCommandData(byte[] commonCommandData) {
+    public void setCommonCommandData(final byte[] commonCommandData) {
         this.commonCommandData = commonCommandData;
     }
 

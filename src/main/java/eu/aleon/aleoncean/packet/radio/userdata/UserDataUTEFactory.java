@@ -16,7 +16,7 @@ package eu.aleon.aleoncean.packet.radio.userdata;
  */
 public class UserDataUTEFactory {
 
-    public static UserDataUTE createFromUserDataRaw(byte[] raw) {
+    public static UserDataUTE createFromUserDataRaw(final byte[] raw) {
         final UserDataUTE userData;
 
         switch (UserDataUTE.getCmd(raw)) {

@@ -61,7 +61,7 @@ public class CoRdIdBaseResponseOk extends Response {
         return remainingWriteCycles;
     }
 
-    public void setRemainingWriteCycles(byte remainingWriteCycles) {
+    public void setRemainingWriteCycles(final byte remainingWriteCycles) {
         this.remainingWriteCycles = remainingWriteCycles;
     }
 

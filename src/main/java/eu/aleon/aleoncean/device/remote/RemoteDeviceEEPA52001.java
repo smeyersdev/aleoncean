@@ -10,11 +10,9 @@
  */
 package eu.aleon.aleoncean.device.remote;
 
-import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.LearnStatus;
-import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.LearnResult;
-import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.EEPResult;
-import eu.aleon.aleoncean.values.LearnType4BS;
-import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.UserData4BSTeachInVariant3;
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.DeviceParameter;
 import eu.aleon.aleoncean.device.DeviceParameterUpdatedInitiation;
 import eu.aleon.aleoncean.device.IllegalDeviceParameterException;
@@ -28,10 +26,12 @@ import eu.aleon.aleoncean.packet.radio.userdata.eepa520.Function;
 import eu.aleon.aleoncean.packet.radio.userdata.eepa520.SetPointSelection;
 import eu.aleon.aleoncean.packet.radio.userdata.eepa520.UserDataEEPA52001FromActuator;
 import eu.aleon.aleoncean.packet.radio.userdata.eepa520.UserDataEEPA52001ToActuator;
+import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.EEPResult;
+import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.LearnResult;
+import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.LearnStatus;
+import eu.aleon.aleoncean.packet.radio.userdata.teachin4bs.UserData4BSTeachInVariant3;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import eu.aleon.aleoncean.values.LearnType4BS;
 
 /**
  * A remote device using the EEP A5-20-01.
@@ -375,10 +375,10 @@ public class RemoteDeviceEEPA52001 extends StandardDevice implements RemoteDevic
             userData.setSetPointInverse(false);
             userData.setFunction(Function.RCU);
             send(userData);
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Fill user data failed.\n{}", ex);
             return;
-        } catch (NullPointerException ex) {
+        } catch (final NullPointerException ex) {
             LOGGER.warn("Do not send data, because a null value is not handled.", ex);
             return;
         }
@@ -401,7 +401,7 @@ public class RemoteDeviceEEPA52001 extends StandardDevice implements RemoteDevic
             setRecvWindowOpen(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.isWindowOpen());
             setRecvActuatorObstructed(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.isActuatorObstructed());
             setRecvTemperature(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.getTemperature());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Received position is invalid.");
         }
     }

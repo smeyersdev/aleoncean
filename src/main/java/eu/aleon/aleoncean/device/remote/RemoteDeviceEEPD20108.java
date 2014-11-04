@@ -10,6 +10,9 @@
  */
 package eu.aleon.aleoncean.device.remote;
 
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.DeviceParameter;
 import eu.aleon.aleoncean.device.DeviceParameterUpdatedInitiation;
 import eu.aleon.aleoncean.device.IllegalDeviceParameterException;
@@ -52,9 +55,6 @@ import eu.aleon.aleoncean.packet.radio.userdata.eepd201.UserInterfaceIndication;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
 import eu.aleon.aleoncean.util.Bits;
 import eu.aleon.aleoncean.util.ThreadUtil;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Abstract communication with a device using EEP D20108.
@@ -109,7 +109,7 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
     }
 
     public void switchOnOff(final DeviceParameterUpdatedInitiation initiation, final boolean on) {
-        UserDataEEPD201CMD01 userData = new UserDataEEPD201CMD01();
+        final UserDataEEPD201CMD01 userData = new UserDataEEPD201CMD01();
         userData.setDimValue(DimValue.SWITCH_TO_NEW_OUT_VALUE);
         userData.setIOChannel(IOChannel.OUTPUT_CHANNEL_00);
         userData.setOutputValueOnOff(on);
@@ -203,14 +203,14 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
     }
 
     private void querySwitchOnOff() {
-        UserDataEEPD201CMD03 userData = new UserDataEEPD201CMD03();
+        final UserDataEEPD201CMD03 userData = new UserDataEEPD201CMD03();
         userData.setIOChannel(IOChannel.OUTPUT_CHANNEL_00);
         send(userData);
     }
 
     private void configureSwitch() {
         // Configure the one channel of the actuator.
-        UserDataEEPD201CMD02 ud = new UserDataEEPD201CMD02();
+        final UserDataEEPD201CMD02 ud = new UserDataEEPD201CMD02();
         ud.setTaughtInDevices(TaughtInDevices.DISABLE);
         ud.setOverCurrentShutDown(OverCurrentShutDown.AUTOMATIC_RESTART);
         ud.setResetOverCurrentShutDown(ResetOverCurrentShutDown.NOT_ACTIVE);
@@ -227,7 +227,7 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
 
     private void configureEnergyMeasurement() {
         try {
-            UserDataEEPD201CMD05 ud = new UserDataEEPD201CMD05();
+            final UserDataEEPD201CMD05 ud = new UserDataEEPD201CMD05();
             ud.setReportMeasurement(ReportMeasurement.QUERY_AND_AUTO_REPORTING);
             ud.setResetMeasurement(ResetMeasurement.NOT_ACTIVE);
             ud.setMeasurementMode(MeasurementMode.ENERGY);
@@ -237,14 +237,14 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
             ud.setMaximumTimeBetweenTwoSubsequentActuator(130);
             ud.setMinimumTimeBetweenTwoSubsequentActuator(15);
             send(ud);
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Something went wrong on configure energy measurement.", ex);
         }
     }
 
     private void configurePowerMeasurement() {
         try {
-            UserDataEEPD201CMD05 ud = new UserDataEEPD201CMD05();
+            final UserDataEEPD201CMD05 ud = new UserDataEEPD201CMD05();
             ud.setReportMeasurement(ReportMeasurement.QUERY_AND_AUTO_REPORTING);
             ud.setResetMeasurement(ResetMeasurement.NOT_ACTIVE);
             ud.setMeasurementMode(MeasurementMode.POWER);
@@ -254,22 +254,22 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
             ud.setMaximumTimeBetweenTwoSubsequentActuator(130);
             ud.setMinimumTimeBetweenTwoSubsequentActuator(15);
             send(ud);
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Something went wrong on configure power measurement.", ex);
         }
     }
 
-    public void handleIncomingEnergyValue(long wattSeconds) {
+    public void handleIncomingEnergyValue(final long wattSeconds) {
         LOGGER.debug("{} - Received new energy value: {} Ws", getAddressRemote(), wattSeconds);
         setEnergy(DeviceParameterUpdatedInitiation.RADIO_PACKET, wattSeconds);
     }
 
-    public void handleIncomingPowerValue(long watt) {
+    public void handleIncomingPowerValue(final long watt) {
         LOGGER.debug("{} - Received new power value: {} W", getAddressRemote(), watt);
         setPower(DeviceParameterUpdatedInitiation.RADIO_PACKET, watt);
     }
 
-    public void handleIncomingOutputValue(boolean on) {
+    public void handleIncomingOutputValue(final boolean on) {
         LOGGER.debug("{} - Received new output value: {}", getAddressRemote(), on);
         setOn(DeviceParameterUpdatedInitiation.RADIO_PACKET, on);
     }
@@ -312,7 +312,7 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
             }
 
             handleIncomingOutputValue(userData.getOutputValueOnOff());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Something went wrong on status response handling.", ex);
         }
     }
@@ -335,7 +335,7 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
     }
 
     private void parseRadioPacketUTE(final RadioPacketUTE packet) {
-        UserDataUTE userData = UserDataUTEFactory.createFromUserDataRaw(packet.getUserDataRaw());
+        final UserDataUTE userData = UserDataUTEFactory.createFromUserDataRaw(packet.getUserDataRaw());
         if (userData instanceof UserDataUTEQuery) {
             sendTeachInResponse((UserDataUTEQuery) userData);
         } else {
@@ -344,7 +344,7 @@ public class RemoteDeviceEEPD20108 extends StandardDevice implements RemoteDevic
     }
 
     @Override
-    public void parseRadioPacket(RadioPacket packet) {
+    public void parseRadioPacket(final RadioPacket packet) {
         if (!packet.getSenderId().equals(getAddressRemote())) {
             LOGGER.warn("Got a package that sender ID does not fit (senderId={}, expected={}).",
                         packet.getSenderId(), getAddressRemote());

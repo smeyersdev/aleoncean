@@ -10,6 +10,9 @@
  */
 package eu.aleon.aleoncean.device.remote;
 
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.DeviceParameter;
 import eu.aleon.aleoncean.device.DeviceParameterUpdatedInitiation;
 import eu.aleon.aleoncean.device.DeviceRPS;
@@ -23,9 +26,6 @@ import eu.aleon.aleoncean.packet.radio.userdata.UserDataRPS;
 import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
 import eu.aleon.aleoncean.values.WindowHandlePosition;
-import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -37,7 +37,7 @@ public class RemoteDeviceEEPF61001 extends DeviceRPS implements RemoteDevice {
 
     private WindowHandlePosition windowHandlePosition;
 
-    public RemoteDeviceEEPF61001(ESP3Connector conn, EnOceanId addressRemote, EnOceanId addressLocal) {
+    public RemoteDeviceEEPF61001(final ESP3Connector conn, final EnOceanId addressRemote, final EnOceanId addressLocal) {
         super(conn, addressRemote, addressLocal);
     }
 
@@ -45,23 +45,23 @@ public class RemoteDeviceEEPF61001 extends DeviceRPS implements RemoteDevice {
         return windowHandlePosition;
     }
 
-    public void setWindowHandlePosition(final DeviceParameterUpdatedInitiation initiation, WindowHandlePosition windowHandlePosition) {
+    public void setWindowHandlePosition(final DeviceParameterUpdatedInitiation initiation, final WindowHandlePosition windowHandlePosition) {
         final WindowHandlePosition oldWindowHandlePosition = this.windowHandlePosition;
         this.windowHandlePosition = windowHandlePosition;
         fireParameterChanged(DeviceParameter.WINDOW_HANDLE_POSITION, initiation, oldWindowHandlePosition, windowHandlePosition);
     }
 
-    public void parseT2U(UserDataEEPF61001T2U userData) {
+    public void parseT2U(final UserDataEEPF61001T2U userData) {
         try {
             setWindowHandlePosition(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.getWindowHandlePosition());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Received not parsable window handle position.");
         }
     }
 
     @Override
-    public void parseRadioPacketRPS(RadioPacketRPS packet) {
-        UserDataRPS userData = UserDataEEPF61001Factory.getPacketData(packet);
+    public void parseRadioPacketRPS(final RadioPacketRPS packet) {
+        final UserDataRPS userData = UserDataEEPF61001Factory.getPacketData(packet);
         if (userData instanceof UserDataEEPF61001T2U) {
             parseT2U((UserDataEEPF61001T2U) userData);
         } else {
@@ -70,12 +70,12 @@ public class RemoteDeviceEEPF61001 extends DeviceRPS implements RemoteDevice {
     }
 
     @Override
-    protected void fillParameters(Set<DeviceParameter> params) {
+    protected void fillParameters(final Set<DeviceParameter> params) {
         params.add(DeviceParameter.WINDOW_HANDLE_POSITION);
     }
 
     @Override
-    public Object getByParameter(DeviceParameter parameter) throws IllegalDeviceParameterException {
+    public Object getByParameter(final DeviceParameter parameter) throws IllegalDeviceParameterException {
         switch (parameter) {
             case WINDOW_HANDLE_POSITION:
                 return getWindowHandlePosition();
@@ -85,7 +85,7 @@ public class RemoteDeviceEEPF61001 extends DeviceRPS implements RemoteDevice {
     }
 
     @Override
-    public void setByParameter(DeviceParameter parameter, Object value) throws IllegalDeviceParameterException {
+    public void setByParameter(final DeviceParameter parameter, final Object value) throws IllegalDeviceParameterException {
         assert DeviceParameter.getSupportedClass(parameter).isAssignableFrom(value.getClass());
         super.setByParameter(parameter, value);
     }

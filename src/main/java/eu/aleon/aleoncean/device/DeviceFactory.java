@@ -10,6 +10,12 @@
  */
 package eu.aleon.aleoncean.device;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.NavigableMap;
+import java.util.TreeMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.device.local.LocalDeviceEEPA53808CMD02;
 import eu.aleon.aleoncean.device.local.LocalDeviceEEPF60201;
 import eu.aleon.aleoncean.device.local.LocalDeviceEEPF60202;
@@ -24,12 +30,6 @@ import eu.aleon.aleoncean.device.remote.RemoteDeviceEEPF61000;
 import eu.aleon.aleoncean.device.remote.RemoteDeviceEEPF61001;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.NavigableMap;
-import java.util.TreeMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Use this factory to create devices by their identifier.
@@ -78,17 +78,17 @@ public class DeviceFactory {
         return MAP.containsKey(type);
     }
 
-    public static StandardDevice createFromClass(Class<? extends StandardDevice> clazz,
+    public static StandardDevice createFromClass(final Class<? extends StandardDevice> clazz,
                                                  final ESP3Connector connector,
                                                  final EnOceanId addressRemote,
                                                  final EnOceanId addressLocal) {
         Constructor<? extends StandardDevice> deviceConstructor;
         try {
             deviceConstructor = clazz.getConstructor(ESP3Connector.class, EnOceanId.class, EnOceanId.class);
-        } catch (NoSuchMethodException e) {
+        } catch (final NoSuchMethodException e) {
             LOGGER.warn("Device constructor not found.");
             return null;
-        } catch (SecurityException e) {
+        } catch (final SecurityException e) {
             LOGGER.warn("Search for device constructor throws security exception.");
             return null;
         }

@@ -26,7 +26,7 @@ public class UserDataEEPF60202T2N extends UserDataEEPF602LightAndBlindControlT2N
     public UserDataEEPF60202T2N() {
     }
 
-    public UserDataEEPF60202T2N(byte[] eepData) {
+    public UserDataEEPF60202T2N(final byte[] eepData) {
         super(eepData);
     }
 

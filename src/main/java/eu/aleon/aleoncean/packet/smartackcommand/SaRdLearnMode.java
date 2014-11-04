@@ -33,7 +33,7 @@ public class SaRdLearnMode extends SmartAckCommandPacket {
     public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         switch (packet.getReturnCode()) {
             case ResponseReturnCode.RET_OK:
-                SaRdLearnModeResponseOk response = new SaRdLearnModeResponseOk();
+                final SaRdLearnModeResponseOk response = new SaRdLearnModeResponseOk();
                 response.fromResponsePacket(packet);
                 return response;
 

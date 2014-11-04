@@ -36,7 +36,7 @@ public class UserDataEEPA50904 extends UserData4BS {
     public static final double TEMPERATURE_SCALE_MAX = 51;
     public static final Unit TEMPERATURE_UNIT = Unit.DEGREE_CELSIUS;
 
-    public UserDataEEPA50904(byte[] eepData) {
+    public UserDataEEPA50904(final byte[] eepData) {
         super(eepData);
     }
 

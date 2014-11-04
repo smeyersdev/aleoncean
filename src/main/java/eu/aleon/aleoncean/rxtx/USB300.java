@@ -63,14 +63,14 @@ public class USB300 implements ESP3Connector {
 
         try {
             portIdentifier = CommPortIdentifier.getPortIdentifier(device);
-        } catch (NoSuchPortException ex) {
+        } catch (final NoSuchPortException ex) {
             LOGGER.warn(String.format("Port (%s) not found.", device), ex);
             return false;
         }
 
         try {
             commPort = portIdentifier.open(this.getClass().getName(), TIMEOUT_MS_WAIT_FOR_OPEN);
-        } catch (PortInUseException ex) {
+        } catch (final PortInUseException ex) {
             LOGGER.warn(String.format("Port (%s) is in use.", device), ex);
             return false;
         }
@@ -85,7 +85,7 @@ public class USB300 implements ESP3Connector {
 
         try {
             serialPort.setSerialPortParams(BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
-        } catch (UnsupportedCommOperationException ex) {
+        } catch (final UnsupportedCommOperationException ex) {
             LOGGER.warn(String.format("Port (%s) did not allow parameter settings.", device), ex);
             disconnect();
             return false;
@@ -97,7 +97,7 @@ public class USB300 implements ESP3Connector {
             //reader = new USB300ReaderThread(serialPort, inputQueue, inputQueueResponse);
             reader = new USB300ReaderListener(serialPort, inputQueue, inputQueueResponse);
             reader.start();
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             LOGGER.warn(String.format("Port (%s) raised input stream error.", device), ex);
             disconnect();
             return false;
@@ -109,7 +109,7 @@ public class USB300 implements ESP3Connector {
             writer = new USB300Writer(serialPortOut, outputQueue);
             writerThread = new Thread(null, writer, "USB300 writer thread");
             writerThread.start();
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             LOGGER.warn(String.format("Port (%s) raised output stream error.", device), ex);
             disconnect();
             return false;
@@ -133,7 +133,7 @@ public class USB300 implements ESP3Connector {
         if (serialPortOut != null) {
             try {
                 serialPortOut.close();
-            } catch (IOException ex) {
+            } catch (final IOException ex) {
                 LOGGER.warn("I/O exc. on close (out)", ex);
             }
             serialPortOut = null;
@@ -176,14 +176,14 @@ public class USB300 implements ESP3Connector {
 
             return (ResponsePacket) ESP3PacketFactory.fromRaw(responseRaw);
 
-        } catch (InterruptedException ex) {
+        } catch (final InterruptedException ex) {
             LOGGER.warn("Interrupted...", ex);
             return null;
         }
     }
 
     @Override
-    public ESP3Packet read(long timeout, TimeUnit unit) throws ReaderShutdownException {
+    public ESP3Packet read(final long timeout, final TimeUnit unit) throws ReaderShutdownException {
         try {
             final byte[] raw = (byte[]) inputQueue.poll(timeout, unit);
 
@@ -196,7 +196,7 @@ public class USB300 implements ESP3Connector {
             }
 
             return ESP3PacketFactory.fromRaw(raw);
-        } catch (InterruptedException ex) {
+        } catch (final InterruptedException ex) {
             LOGGER.warn("Interrupted...", ex);
             return null;
         }

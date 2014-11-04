@@ -10,8 +10,8 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata.eepa53808;
 
-import eu.aleon.aleoncean.util.Bits;
 import eu.aleon.aleoncean.packet.radio.userdata.UserData4BS;
+import eu.aleon.aleoncean.util.Bits;
 
 /**
  * @author Markus Rathgeb <maggu2810@gmail.com>
@@ -42,7 +42,7 @@ public class UserDataEEPA53808 extends UserData4BS {
         super(data);
     }
 
-    public UserDataEEPA53808(final byte cmd, byte[] data) {
+    public UserDataEEPA53808(final byte cmd, final byte[] data) {
         super(data);
         setCommandId(cmd);
     }

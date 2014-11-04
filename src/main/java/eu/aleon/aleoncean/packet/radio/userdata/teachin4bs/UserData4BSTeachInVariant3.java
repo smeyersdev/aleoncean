@@ -28,7 +28,7 @@ public class UserData4BSTeachInVariant3 extends UserData4BSTeachIn {
         super();
     }
 
-    public UserData4BSTeachInVariant3(byte[] data) {
+    public UserData4BSTeachInVariant3(final byte[] data) {
         super(data);
     }
 

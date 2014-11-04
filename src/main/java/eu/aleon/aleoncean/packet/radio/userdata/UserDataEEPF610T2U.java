@@ -10,12 +10,12 @@
  */
 package eu.aleon.aleoncean.packet.radio.userdata;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.NUState;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS.T21State;
 import eu.aleon.aleoncean.util.Bits;
 import eu.aleon.aleoncean.values.WindowHandlePosition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -44,7 +44,7 @@ public abstract class UserDataEEPF610T2U extends UserDataRPS {
         try {
             final WindowHandlePosition windowHandlePosition = decodePosition((byte) getDataRange(0, 7, 0, 4));
             return windowHandlePosition;
-        } catch (IllegalArgumentException ex) {
+        } catch (final IllegalArgumentException ex) {
             final String msg = "The window handle position seems to be wrong.";
             LOGGER.warn(msg, ex);
             throw new UserDataScaleValueException(msg);
@@ -54,7 +54,7 @@ public abstract class UserDataEEPF610T2U extends UserDataRPS {
     protected final byte getWindowHandlePositionByte(final WindowHandlePosition windowHandlePosition) throws UserDataScaleValueException {
         try {
             return encodePosition(windowHandlePosition);
-        } catch (IllegalArgumentException ex) {
+        } catch (final IllegalArgumentException ex) {
             final String msg = "The window handle position seems to be wrong.";
             LOGGER.warn(msg, ex);
             throw new UserDataScaleValueException(msg);

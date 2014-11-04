@@ -22,7 +22,7 @@ public class UserDataEEPA50803 extends UserDataEEPA508 {
     public static final double TEMPERATURE_SCALE_MIN = -30;
     public static final double TEMPERATURE_SCALE_MAX = 50;
 
-    public UserDataEEPA50803(byte[] eepData) {
+    public UserDataEEPA50803(final byte[] eepData) {
         super(eepData, ILLUMINATION_SCALE_MIN, ILLUMINATION_SCALE_MAX, TEMPERATURE_SCALE_MIN, TEMPERATURE_SCALE_MAX);
     }
 

@@ -35,7 +35,7 @@ public class DeviceParameterUpdatedSupport {
         this(source, false);
     }
 
-    public DeviceParameterUpdatedSupport(final Object source, boolean fireChangesOnly) {
+    public DeviceParameterUpdatedSupport(final Object source, final boolean fireChangesOnly) {
         this.source = source;
         this.fireChangesOnly = fireChangesOnly;
     }
@@ -67,7 +67,7 @@ public class DeviceParameterUpdatedSupport {
         }
     }
 
-    private void fireParameterUpdated(List<DeviceParameterUpdatedListener> listeners,
+    private void fireParameterUpdated(final List<DeviceParameterUpdatedListener> listeners,
                                       final DeviceParameterUpdatedEvent event) {
         for (final DeviceParameterUpdatedListener listener : listeners) {
             listener.parameterUpdated(event);

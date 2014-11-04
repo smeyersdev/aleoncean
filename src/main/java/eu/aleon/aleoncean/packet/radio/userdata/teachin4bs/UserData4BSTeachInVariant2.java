@@ -22,7 +22,7 @@ public class UserData4BSTeachInVariant2 extends UserData4BSTeachIn {
         setLearnType(LearnType4BS.WITH_EEP_NUM_WITH_MANU_ID);
     }
 
-    public UserData4BSTeachInVariant2(byte[] data) {
+    public UserData4BSTeachInVariant2(final byte[] data) {
         super(data);
     }
 

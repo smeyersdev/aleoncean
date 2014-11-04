@@ -28,9 +28,9 @@ public class USB300ReaderThread extends USB300Reader implements Runnable {
 
     private final Thread workerThread;
 
-    public USB300ReaderThread(SerialPort serialPort,
-                              BlockingQueue<byte[]> queue,
-                              BlockingQueue<byte[]> queueResponse) throws IOException {
+    public USB300ReaderThread(final SerialPort serialPort,
+                              final BlockingQueue<byte[]> queue,
+                              final BlockingQueue<byte[]> queueResponse) throws IOException {
         super(serialPort, queue, queueResponse);
 
         workerThread = new Thread(null, this, "USB300 reader thread");
@@ -57,7 +57,7 @@ public class USB300ReaderThread extends USB300Reader implements Runnable {
              * So we could ensure, that the read thread will check the running flag again.
              */
             serialPort.enableReceiveTimeout(1000);
-        } catch (UnsupportedCommOperationException ex) {
+        } catch (final UnsupportedCommOperationException ex) {
             LOGGER.warn("Cannot set receive timeout.", ex);
             return false;
         }
@@ -73,7 +73,7 @@ public class USB300ReaderThread extends USB300Reader implements Runnable {
         try {
             // If we close the input stream, EOF will be read from the reader thread.
             in.close();
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             LOGGER.warn("Closing input stream failed.", ex);
         }
 

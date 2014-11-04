@@ -16,7 +16,7 @@ package eu.aleon.aleoncean.packet.radio.userdata;
  */
 public class UserDataEEPD50001 extends UserData1BS {
 
-    public UserDataEEPD50001(byte[] eepData) {
+    public UserDataEEPD50001(final byte[] eepData) {
         super(eepData);
     }
 

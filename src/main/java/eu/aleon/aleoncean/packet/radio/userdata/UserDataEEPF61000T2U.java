@@ -21,7 +21,7 @@ public class UserDataEEPF61000T2U extends UserDataEEPF610T2U {
     public UserDataEEPF61000T2U() {
     }
 
-    public UserDataEEPF61000T2U(byte[] data) {
+    public UserDataEEPF61000T2U(final byte[] data) {
         super(data);
     }
 
@@ -31,7 +31,7 @@ public class UserDataEEPF61000T2U extends UserDataEEPF610T2U {
     }
 
     @Override
-    public void setWindowHandlePosition(WindowHandlePosition windowHandlePosition) throws UserDataScaleValueException {
+    public void setWindowHandlePosition(final WindowHandlePosition windowHandlePosition) throws UserDataScaleValueException {
         setDataRange(getWindowHandlePositionByte(windowHandlePosition) & 0xFF, 0, 7, 0, 4);
     }
 

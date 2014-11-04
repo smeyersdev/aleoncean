@@ -10,11 +10,11 @@
  */
 package eu.aleon.aleoncean.packet;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import eu.aleon.aleoncean.packet.response.NoDataResponse;
 import eu.aleon.aleoncean.packet.response.Response;
 import eu.aleon.aleoncean.packet.response.UnknownResponseException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 /**
  * Representation of a RADIO packet.
@@ -45,7 +45,7 @@ public class RadioPacket extends ESP3Packet {
         this(RadioChoice.UNSET);
     }
 
-    public RadioPacket(byte choice) {
+    public RadioPacket(final byte choice) {
         super(PacketType.RADIO);
         setChoice(choice);
     }
@@ -82,7 +82,7 @@ public class RadioPacket extends ESP3Packet {
                                   + 1 /* status */;
 
         final byte[] rawData = new byte[rawDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(getChoice());
@@ -115,7 +115,7 @@ public class RadioPacket extends ESP3Packet {
                                           + 1 /* security level */;
 
         final byte[] rawOptionalData = new byte[rawOptionalDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawOptionalData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawOptionalData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(getSubTelNum());
@@ -127,7 +127,7 @@ public class RadioPacket extends ESP3Packet {
     }
 
     @Override
-    public Response inspectResponsePacket(ResponsePacket packet) throws UnknownResponseException {
+    public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         switch (packet.getReturnCode()) {
             case ResponseReturnCode.RET_OK:
             case ResponseReturnCode.RET_NOT_SUPPORTED:

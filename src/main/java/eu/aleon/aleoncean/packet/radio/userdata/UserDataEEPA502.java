@@ -41,9 +41,9 @@ public class UserDataEEPA502 extends UserData4BS {
      * @param tempScaleMin
      * @param tempScaleMax
      */
-    public UserDataEEPA502(int tempStartDB, int tempStartBit, int tempEndDB, int tempEndBit,
-                           long tempRangeMin, long tempRangeMax,
-                           double tempScaleMin, double tempScaleMax) {
+    public UserDataEEPA502(final int tempStartDB, final int tempStartBit, final int tempEndDB, final int tempEndBit,
+                           final long tempRangeMin, final long tempRangeMax,
+                           final double tempScaleMin, final double tempScaleMax) {
         super();
         this.tempStartDB = tempStartDB;
         this.tempStartBit = tempStartBit;
@@ -69,10 +69,10 @@ public class UserDataEEPA502 extends UserData4BS {
      * @param tempScaleMin
      * @param tempScaleMax
      */
-    public UserDataEEPA502(byte[] eepData,
-                           int tempStartDB, int tempStartBit, int tempEndDB, int tempEndBit,
-                           long tempRangeMin, long tempRangeMax,
-                           double tempScaleMin, double tempScaleMax) {
+    public UserDataEEPA502(final byte[] eepData,
+                           final int tempStartDB, final int tempStartBit, final int tempEndDB, final int tempEndBit,
+                           final long tempRangeMin, final long tempRangeMax,
+                           final double tempScaleMin, final double tempScaleMax) {
         super(eepData);
         this.tempStartDB = tempStartDB;
         this.tempStartBit = tempStartBit;
@@ -102,8 +102,8 @@ public class UserDataEEPA502 extends UserData4BS {
      * @param temperature The temperature value to be set in the user data
      * @throws UserDataScaleValueException
      */
-    public void setTemperature(double temperature) throws UserDataScaleValueException {
-        long range = getRangeValue(temperature, tempScaleMin, tempScaleMax,
+    public void setTemperature(final double temperature) throws UserDataScaleValueException {
+        final long range = getRangeValue(temperature, tempScaleMin, tempScaleMax,
                                    tempRangeMin, tempRangeMax);
         setDataRange(range, tempStartDB, tempStartBit, tempEndDB, tempEndBit);
     }

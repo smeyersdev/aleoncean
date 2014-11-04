@@ -10,12 +10,12 @@
  */
 package eu.aleon.aleoncean.packet.response.smartackcommand;
 
-import eu.aleon.aleoncean.packet.response.Response;
-import eu.aleon.aleoncean.values.SmartAckLearnModeExtended;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import eu.aleon.aleoncean.packet.response.Response;
+import eu.aleon.aleoncean.values.SmartAckLearnModeExtended;
 
 /**
  *
@@ -35,7 +35,7 @@ public class SaRdLearnModeResponseOk extends Response {
                                           + 1 /* extended */;
 
         final byte[] rawResponseData = new byte[rawResponseDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawResponseData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawResponseData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         final byte rawEnable = isEnabled() ? (byte) 1 : (byte) 0;
@@ -64,8 +64,8 @@ public class SaRdLearnModeResponseOk extends Response {
     }
 
     @Override
-    public void setResponseData(byte[] responseData) {
-        ByteBuffer bb = ByteBuffer.wrap(responseData);
+    public void setResponseData(final byte[] responseData) {
+        final ByteBuffer bb = ByteBuffer.wrap(responseData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         setEnabled(bb.get() != 0);
@@ -96,14 +96,14 @@ public class SaRdLearnModeResponseOk extends Response {
     }
 
     @Override
-    public void setOptionalData(byte[] optionalData) {
+    public void setOptionalData(final byte[] optionalData) {
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(final boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -111,7 +111,7 @@ public class SaRdLearnModeResponseOk extends Response {
         return extended;
     }
 
-    public void setExtended(SmartAckLearnModeExtended extended) {
+    public void setExtended(final SmartAckLearnModeExtended extended) {
         this.extended = extended;
     }
 

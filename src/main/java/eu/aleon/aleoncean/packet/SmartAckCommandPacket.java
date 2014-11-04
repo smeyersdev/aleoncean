@@ -35,7 +35,7 @@ public class SmartAckCommandPacket extends ESP3Packet {
     }
 
     @Override
-    public void setData(byte[] data) {
+    public void setData(final byte[] data) {
         int pos = 0;
         byte[] tmp;
 
@@ -58,7 +58,7 @@ public class SmartAckCommandPacket extends ESP3Packet {
                                   + rawSmartAckData.length;
 
         final byte[] rawData = new byte[rawDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(getSmartAckCode());
@@ -71,7 +71,7 @@ public class SmartAckCommandPacket extends ESP3Packet {
         return smartAckCode;
     }
 
-    public final void setSmartAckCode(byte smartAckCode) {
+    public final void setSmartAckCode(final byte smartAckCode) {
         this.smartAckCode = smartAckCode;
     }
 
@@ -79,7 +79,7 @@ public class SmartAckCommandPacket extends ESP3Packet {
         return smartAckData;
     }
 
-    public void setSmartAckData(byte[] smartAckData) {
+    public void setSmartAckData(final byte[] smartAckData) {
         this.smartAckData = smartAckData;
     }
 

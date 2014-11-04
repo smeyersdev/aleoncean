@@ -95,7 +95,7 @@ public abstract class USB300Reader implements PropertyChangeListener {
             /*
              * Handle exceptions.
              */
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             LOGGER.warn("Got an IOException while reading.", ex);
             return false;
         }
@@ -109,7 +109,7 @@ public abstract class USB300Reader implements PropertyChangeListener {
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(final PropertyChangeEvent evt) {
         final byte[] raw = (byte[]) evt.getNewValue();
         if (ESP3Packet.getPacketType(raw) == PacketType.RESPONSE) {
             queueResponse.add(raw);

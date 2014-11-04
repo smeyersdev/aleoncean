@@ -30,10 +30,10 @@ public class CoRdVersionPacket extends CommonCommandPacket {
     }
 
     @Override
-    public Response inspectResponsePacket(ResponsePacket packet) throws UnknownResponseException {
+    public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         switch (packet.getReturnCode()) {
             case ResponseReturnCode.RET_OK:
-                CoRdVersionResponseOk response = new CoRdVersionResponseOk();
+                final CoRdVersionResponseOk response = new CoRdVersionResponseOk();
                 response.fromResponsePacket(packet);
                 return response;
 

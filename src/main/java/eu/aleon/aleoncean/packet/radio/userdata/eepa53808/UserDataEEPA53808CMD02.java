@@ -49,7 +49,7 @@ public class UserDataEEPA53808CMD02 extends UserDataEEPA53808 {
         super(CMD);
     }
 
-    public UserDataEEPA53808CMD02(byte[] data) {
+    public UserDataEEPA53808CMD02(final byte[] data) {
         super(data);
     }
 

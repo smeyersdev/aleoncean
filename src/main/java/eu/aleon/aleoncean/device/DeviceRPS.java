@@ -10,12 +10,12 @@
  */
 package eu.aleon.aleoncean.device;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.aleon.aleoncean.packet.EnOceanId;
 import eu.aleon.aleoncean.packet.RadioPacket;
 import eu.aleon.aleoncean.packet.radio.RadioPacketRPS;
 import eu.aleon.aleoncean.rxtx.ESP3Connector;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -34,7 +34,7 @@ public abstract class DeviceRPS extends StandardDevice {
     public abstract void parseRadioPacketRPS(RadioPacketRPS packet);
 
     @Override
-    public void parseRadioPacket(RadioPacket packet) {
+    public void parseRadioPacket(final RadioPacket packet) {
         if (packet instanceof RadioPacketRPS) {
             parseRadioPacketRPS((RadioPacketRPS) packet);
         } else {

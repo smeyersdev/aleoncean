@@ -22,7 +22,7 @@ public class NoDataResponse extends Response {
     }
 
     @Override
-    public void setResponseData(byte[] responseData) {
+    public void setResponseData(final byte[] responseData) {
     }
 
     @Override
@@ -31,7 +31,7 @@ public class NoDataResponse extends Response {
     }
 
     @Override
-    public void setOptionalData(byte[] optionalData) {
+    public void setOptionalData(final byte[] optionalData) {
     }
 
 }

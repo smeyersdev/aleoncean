@@ -132,11 +132,11 @@ public class UserDataEEPD201CMD04 extends UserDataEEPD201 {
         return getOutputValue() == OutputValue.NOT_VALID_OR_NOT_APPLICABLE;
     }
 
-    public void setOutputValueOnOff(boolean on) {
+    public void setOutputValueOnOff(final boolean on) {
         setOutputValue(OutputValue.onOffValueScaleToRaw(on));
     }
 
-    public void setOutputValueDim(int value) {
+    public void setOutputValueDim(final int value) {
         setOutputValue(OutputValue.dimValueScaleToRaw(value));
     }
 

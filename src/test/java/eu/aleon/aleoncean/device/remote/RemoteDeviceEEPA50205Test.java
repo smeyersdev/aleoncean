@@ -1,17 +1,18 @@
 /**
- * 
+ *
  */
 package eu.aleon.aleoncean.device.remote;
 
-import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
-import eu.aleon.aleoncean.packet.radio.RadioPacket4BS;
-import eu.aleon.aleoncean.packet.radio.userdata.UserDataEEPA50205;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import eu.aleon.aleoncean.packet.radio.RadioPacket4BS;
+import eu.aleon.aleoncean.packet.radio.userdata.UserDataEEPA50205;
+import eu.aleon.aleoncean.packet.radio.userdata.UserDataScaleValueException;
 
 /**
  * @author Thomas Stezaly (thomas.stezaly@aleuon.eu)
@@ -38,7 +39,7 @@ public class RemoteDeviceEEPA50205Test {
      */
     @Before
     public void setUp() throws Exception {
-        
+
     }
 
     /**
@@ -57,7 +58,7 @@ public class RemoteDeviceEEPA50205Test {
         try {
             userData.setTemperature(temperatureSet);
             userData.setTeachIn(false);
-        } catch (UserDataScaleValueException e) {
+        } catch (final UserDataScaleValueException e) {
             fail("Throws exception: UserDataScaleValueException");
         }
 
@@ -66,8 +67,8 @@ public class RemoteDeviceEEPA50205Test {
 
         testDevice.parseRadioPacket(packet);
 
-        double temperatureGet = testDevice.getTemperature();
-        double delta = temperatureGet - temperatureSet;
+        final double temperatureGet = testDevice.getTemperature();
+        final double delta = temperatureGet - temperatureSet;
 
         System.out.println("temperatureSet: "+temperatureSet);
         System.out.println("temperatureGet: "+temperatureGet);

@@ -38,11 +38,11 @@ public abstract class UserDataEEPA508 extends UserData4BS {
     private final double temperatureScaleMin;
     private final double temperatureScaleMax;
 
-    public UserDataEEPA508(byte[] eepData,
-                           double illuminationScaleMin,
-                           double illuminationScaleMax,
-                           double temperatureScaleMin,
-                           double temperatureScaleMax) {
+    public UserDataEEPA508(final byte[] eepData,
+                           final double illuminationScaleMin,
+                           final double illuminationScaleMax,
+                           final double temperatureScaleMin,
+                           final double temperatureScaleMax) {
         super(eepData);
         this.illuminationScaleMin = illuminationScaleMin;
         this.illuminationScaleMax = illuminationScaleMax;

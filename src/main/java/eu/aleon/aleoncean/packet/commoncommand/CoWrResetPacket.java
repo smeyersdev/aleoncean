@@ -29,7 +29,7 @@ public class CoWrResetPacket extends CommonCommandPacket {
     }
 
     @Override
-    public Response inspectResponsePacket(ResponsePacket packet) throws UnknownResponseException {
+    public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         switch (packet.getReturnCode()) {
             case ResponseReturnCode.RET_OK:
             case ResponseReturnCode.RET_NOT_SUPPORTED:
