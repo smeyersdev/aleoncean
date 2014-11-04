@@ -46,8 +46,7 @@ public class CalculationUtil {
         // so we have to improve the check and set the correct min and max values.
         if(rangeMin <= rangeMax){
             return fitInRange((long) rawValue, rangeMin, rangeMax);
-        }
-        else{
+        } else {
             return fitInRange((long) rawValue, rangeMax, rangeMin);
         }
     }
