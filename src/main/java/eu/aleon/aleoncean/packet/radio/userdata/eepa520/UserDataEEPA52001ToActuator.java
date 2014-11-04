@@ -76,7 +76,7 @@ public class UserDataEEPA52001ToActuator extends UserData4BS {
         super();
     }
 
-    public UserDataEEPA52001ToActuator(byte[] data) {
+    public UserDataEEPA52001ToActuator(final byte[] data) {
         super(data);
     }
 

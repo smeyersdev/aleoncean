@@ -21,7 +21,7 @@ public class ThreadUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThreadUtil.class);
 
-    public static void sleep(long millis) {
+    public static void sleep(final long millis) {
         long start;
         long end;
         long remaining = millis;
@@ -30,7 +30,7 @@ public class ThreadUtil {
             try {
                 Thread.sleep(remaining);
                 remaining = 0;
-            } catch (InterruptedException ex) {
+            } catch (final InterruptedException ex) {
                 end = System.nanoTime();
                 remaining -= (end - start) / 1000000;
             }
@@ -46,7 +46,7 @@ public class ThreadUtil {
             try {
                 thread.join();
                 done = true;
-            } catch (InterruptedException ex) {
+            } catch (final InterruptedException ex) {
                 LOGGER.debug("Wait for thread interrupted: {}", thread.getName());
             }
         } while (!done);

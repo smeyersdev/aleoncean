@@ -42,7 +42,7 @@ public class UserDataEEPA53808 extends UserData4BS {
         super(data);
     }
 
-    public UserDataEEPA53808(final byte cmd, byte[] data) {
+    public UserDataEEPA53808(final byte cmd, final byte[] data) {
         super(data);
         setCommandId(cmd);
     }

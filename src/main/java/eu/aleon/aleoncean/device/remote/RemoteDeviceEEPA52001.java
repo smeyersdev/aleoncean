@@ -375,10 +375,10 @@ public class RemoteDeviceEEPA52001 extends StandardDevice implements RemoteDevic
             userData.setSetPointInverse(false);
             userData.setFunction(Function.RCU);
             send(userData);
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Fill user data failed.\n{}", ex);
             return;
-        } catch (NullPointerException ex) {
+        } catch (final NullPointerException ex) {
             LOGGER.warn("Do not send data, because a null value is not handled.", ex);
             return;
         }
@@ -401,7 +401,7 @@ public class RemoteDeviceEEPA52001 extends StandardDevice implements RemoteDevic
             setRecvWindowOpen(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.isWindowOpen());
             setRecvActuatorObstructed(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.isActuatorObstructed());
             setRecvTemperature(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.getTemperature());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Received position is invalid.");
         }
     }

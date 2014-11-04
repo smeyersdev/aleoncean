@@ -22,7 +22,7 @@ public class UserDataScaleValueException extends Exception {
         super();
     }
 
-    public UserDataScaleValueException(String message) {
+    public UserDataScaleValueException(final String message) {
         super(message);
     }
 

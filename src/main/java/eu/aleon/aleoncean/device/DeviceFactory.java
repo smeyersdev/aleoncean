@@ -78,17 +78,17 @@ public class DeviceFactory {
         return MAP.containsKey(type);
     }
 
-    public static StandardDevice createFromClass(Class<? extends StandardDevice> clazz,
+    public static StandardDevice createFromClass(final Class<? extends StandardDevice> clazz,
                                                  final ESP3Connector connector,
                                                  final EnOceanId addressRemote,
                                                  final EnOceanId addressLocal) {
         Constructor<? extends StandardDevice> deviceConstructor;
         try {
             deviceConstructor = clazz.getConstructor(ESP3Connector.class, EnOceanId.class, EnOceanId.class);
-        } catch (NoSuchMethodException e) {
+        } catch (final NoSuchMethodException e) {
             LOGGER.warn("Device constructor not found.");
             return null;
-        } catch (SecurityException e) {
+        } catch (final SecurityException e) {
             LOGGER.warn("Search for device constructor throws security exception.");
             return null;
         }

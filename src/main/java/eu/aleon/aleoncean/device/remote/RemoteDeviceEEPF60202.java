@@ -21,7 +21,7 @@ import eu.aleon.aleoncean.rxtx.ESP3Connector;
  */
 public class RemoteDeviceEEPF60202 extends DeviceEEPF60202 implements RemoteDevice {
 
-    public RemoteDeviceEEPF60202(ESP3Connector conn, EnOceanId addressRemote, EnOceanId addressLocal) {
+    public RemoteDeviceEEPF60202(final ESP3Connector conn, final EnOceanId addressRemote, final EnOceanId addressLocal) {
         super(conn, addressRemote, addressLocal);
     }
 

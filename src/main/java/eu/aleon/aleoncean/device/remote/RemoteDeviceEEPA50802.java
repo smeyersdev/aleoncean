@@ -38,7 +38,7 @@ public class RemoteDeviceEEPA50802 extends StandardDevice implements RemoteDevic
     private Boolean motion;
     private Boolean occupancyButtonPressed;
 
-    public RemoteDeviceEEPA50802(ESP3Connector conn, EnOceanId addressRemote, EnOceanId addressLocal) {
+    public RemoteDeviceEEPA50802(final ESP3Connector conn, final EnOceanId addressRemote, final EnOceanId addressLocal) {
         super(conn, addressRemote, addressLocal);
     }
 
@@ -92,7 +92,7 @@ public class RemoteDeviceEEPA50802 extends StandardDevice implements RemoteDevic
         fireParameterChanged(DeviceParameter.OCCUPANCY_BUTTON, initiation, oldOccupancyButtonPressed, occupancyButtonPressed);
     }
 
-    private void parseRadioPacket4BS(RadioPacket4BS packet) {
+    private void parseRadioPacket4BS(final RadioPacket4BS packet) {
         if (packet.isTeachIn()) {
             LOGGER.debug("Ignore teach-in packets.");
             return;
@@ -107,7 +107,7 @@ public class RemoteDeviceEEPA50802 extends StandardDevice implements RemoteDevic
     }
 
     @Override
-    public void parseRadioPacket(RadioPacket packet) {
+    public void parseRadioPacket(final RadioPacket packet) {
         if (packet instanceof RadioPacket4BS) {
             parseRadioPacket4BS((RadioPacket4BS) packet);
         } else {
@@ -125,7 +125,7 @@ public class RemoteDeviceEEPA50802 extends StandardDevice implements RemoteDevic
     }
 
     @Override
-    public Object getByParameter(DeviceParameter parameter) throws IllegalDeviceParameterException {
+    public Object getByParameter(final DeviceParameter parameter) throws IllegalDeviceParameterException {
         switch (parameter) {
             case SUPPLY_VOLTAGE_V:
                 return getSupplyVoltage();
@@ -143,7 +143,7 @@ public class RemoteDeviceEEPA50802 extends StandardDevice implements RemoteDevic
     }
 
     @Override
-    public void setByParameter(DeviceParameter parameter, Object value) throws IllegalDeviceParameterException {
+    public void setByParameter(final DeviceParameter parameter, final Object value) throws IllegalDeviceParameterException {
         assert DeviceParameter.getSupportedClass(parameter).isAssignableFrom(value.getClass());
         super.setByParameter(parameter, value);
     }

@@ -57,8 +57,8 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
         super(conn, addressRemote, addressLocal);
     }
 
-    public void setButton(RockerSwitchButton button, final EnergyBow energyBow) {
-        UserDataEEPF602LightAndBlindControlT2N t2n = newPacketDataT2N();
+    public void setButton(final RockerSwitchButton button, final EnergyBow energyBow) {
+        final UserDataEEPF602LightAndBlindControlT2N t2n = newPacketDataT2N();
         t2n.setRocker1stAction(button);
         t2n.set2ndActionValid(false);
         t2n.setEnergyBowPressed(energyBow);
@@ -66,8 +66,8 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
         send(t2n);
     }
 
-    public void setButtons(RockerSwitchButton button1, RockerSwitchButton button2, final EnergyBow energyBow) {
-        UserDataEEPF602LightAndBlindControlT2N t2n = newPacketDataT2N();
+    public void setButtons(final RockerSwitchButton button1, final RockerSwitchButton button2, final EnergyBow energyBow) {
+        final UserDataEEPF602LightAndBlindControlT2N t2n = newPacketDataT2N();
         t2n.setRocker1stAction(button1);
         t2n.setRocker2ndAction(button2);
         t2n.set2ndActionValid(true);
@@ -77,7 +77,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
     }
 
     public void releaseButtons() {
-        UserDataEEPF602LightAndBlindControlT2U t2u = newPacketDataT2U();
+        final UserDataEEPF602LightAndBlindControlT2U t2u = newPacketDataT2U();
         t2u.setEnergyBowPressed(EnergyBow.RELEASED);
         t2u.setNumberOfPressedButtons(UserDataEEPF602LightAndBlindControlT2U.PressedButtons.NO_BUTTON);
 
@@ -88,7 +88,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
         return button == getDimUpA() || button == getDimUpA();
     }
 
-    private boolean buttonChanged(boolean onlyIfLastIsKnown,
+    private boolean buttonChanged(final boolean onlyIfLastIsKnown,
                                   final Boolean curStateButtonPressed,
                                   final Boolean newStateButtonPressed) {
         return newStateButtonPressed != null
@@ -131,7 +131,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
 
     private boolean handleNewStateButton(final RockerSwitchButton button,
                                          final RockerSwitchState newState,
-                                         boolean onlyIfLastIsKnown) {
+                                         final boolean onlyIfLastIsKnown) {
         final Boolean curStateButtonPressed = state.get(button);
         final Boolean newStateButtonPressed = newState.get(button);
 
@@ -151,8 +151,8 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
      * @param newState          The current state that was created by package inspection.
      * @param onlyIfLastIsKnown Save the current state only, if the last state was known.
      */
-    private void handleNewState(RockerSwitchState newState,
-                                boolean onlyIfLastIsKnown) {
+    private void handleNewState(final RockerSwitchState newState,
+                                final boolean onlyIfLastIsKnown) {
         try {
             boolean changed = false;
 
@@ -164,8 +164,8 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
             changed |= handleNewStateButton(RockerSwitchButton.BO, newState, onlyIfLastIsKnown);
 
             if (changed) {
-                List<RockerSwitchButton> pressed = new LinkedList<>();
-                List<RockerSwitchButton> released = new LinkedList<>();
+                final List<RockerSwitchButton> pressed = new LinkedList<>();
+                final List<RockerSwitchButton> released = new LinkedList<>();
 
                 RockerSwitchState.getChanges(oldState,
                                              state,
@@ -174,7 +174,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
                 parameterChangedSupport.fireParameterUpdated(null, null, oldState, state);
             }
 
-        } catch (CloneNotSupportedException ex) {
+        } catch (final CloneNotSupportedException ex) {
             LOGGER.debug("Catched exception: {}", ex);
         }
     }
@@ -191,7 +191,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
                 newState.set(data.getRocker2ndAction(), pressed);
             }
             handleNewState(newState, false);
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.debug("Catched exception: {}", ex);
         }
     }
@@ -206,13 +206,13 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
                 //handleNewState(newState, true);
                 handleNewState(newState, false);
             }
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.debug("Catched exception: {}", ex);
         }
 
     }
 
-    void parseT2(RadioPacketRPS packet) {
+    void parseT2(final RadioPacketRPS packet) {
         switch (packet.getNUState()) {
             case NORMALMESSAGE:
                 parseT2N(packet);
@@ -226,7 +226,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
     }
 
     @Override
-    public void parseRadioPacketRPS(RadioPacketRPS packet) {
+    public void parseRadioPacketRPS(final RadioPacketRPS packet) {
         switch (packet.getT21State()) {
             case PTM_TYPE2:
                 parseT2(packet);
@@ -248,7 +248,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
     }
 
     @Override
-    public Object getByParameter(DeviceParameter parameter) throws IllegalDeviceParameterException {
+    public Object getByParameter(final DeviceParameter parameter) throws IllegalDeviceParameterException {
         switch (parameter) {
             case BUTTON_DIM_A:
                 return actionA;
@@ -291,7 +291,7 @@ public abstract class DeviceRPSLightAndBlindControlAppStyle extends DeviceRPS {
     }
 
     @Override
-    public void setByParameter(DeviceParameter parameter, Object value) throws IllegalDeviceParameterException {
+    public void setByParameter(final DeviceParameter parameter, final Object value) throws IllegalDeviceParameterException {
         assert DeviceParameter.getSupportedClass(parameter).isAssignableFrom(value.getClass());
         if (this instanceof LocalDevice) {
             switch (parameter) {

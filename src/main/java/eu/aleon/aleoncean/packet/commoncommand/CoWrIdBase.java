@@ -32,7 +32,7 @@ public class CoWrIdBase extends CommonCommandPacket {
     }
 
     @Override
-    public void setCommonCommandData(byte[] commonCommandData) {
+    public void setCommonCommandData(final byte[] commonCommandData) {
 
         super.setCommonCommandData(commonCommandData); //To change body of generated methods, choose Tools | Templates.
     }
@@ -44,7 +44,7 @@ public class CoWrIdBase extends CommonCommandPacket {
     }
 
     @Override
-    public Response inspectResponsePacket(ResponsePacket packet) throws UnknownResponseException {
+    public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         switch (packet.getReturnCode()) {
             case ResponseReturnCode.RET_OK:
             case ResponseReturnCode.RET_NOT_SUPPORTED:

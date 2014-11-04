@@ -34,7 +34,7 @@ public abstract class DeviceRPS extends StandardDevice {
     public abstract void parseRadioPacketRPS(RadioPacketRPS packet);
 
     @Override
-    public void parseRadioPacket(RadioPacket packet) {
+    public void parseRadioPacket(final RadioPacket packet) {
         if (packet instanceof RadioPacketRPS) {
             parseRadioPacketRPS((RadioPacketRPS) packet);
         } else {

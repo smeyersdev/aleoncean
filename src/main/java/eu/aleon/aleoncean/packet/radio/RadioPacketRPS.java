@@ -35,7 +35,7 @@ public class RadioPacketRPS extends RadioPacketFixedLength {
 
         private final boolean value;
 
-        NUState(boolean value) {
+        NUState(final boolean value) {
             this.value = value;
         }
 
@@ -59,7 +59,7 @@ public class RadioPacketRPS extends RadioPacketFixedLength {
             return value ? PTM_TYPE2 : PTM_TYPE1;
         }
 
-        T21State(boolean value) {
+        T21State(final boolean value) {
             this.value = value;
         }
 

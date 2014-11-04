@@ -20,14 +20,14 @@ public class RadioPacketFixedLength extends RadioPacket {
 
     private final byte[] userData;
 
-    public RadioPacketFixedLength(int userDataLength, byte choice) {
+    public RadioPacketFixedLength(final int userDataLength, final byte choice) {
         super(choice);
         this.userDataLength = userDataLength;
         this.userData = new byte[userDataLength];
     }
 
     @Override
-    public final void setUserDataRaw(byte[] userData) {
+    public final void setUserDataRaw(final byte[] userData) {
         assert userData.length == userDataLength;
         System.arraycopy(userData, 0, this.userData, 0, this.userDataLength);
     }

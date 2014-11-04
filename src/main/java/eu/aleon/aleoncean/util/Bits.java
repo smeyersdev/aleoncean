@@ -12,31 +12,31 @@ package eu.aleon.aleoncean.util;
 
 public class Bits {
 
-    public static boolean isBitSet(byte b, int pos) {
+    public static boolean isBitSet(final byte b, final int pos) {
         return (((b & 0xFF) >>> pos) & 1) == 1;
     }
 
-    public static int getBit(byte b, int pos) {
+    public static int getBit(final byte b, final int pos) {
         return ((b & 0xFF) >>> pos) & 1;
     }
 
-    public static boolean getBool(byte b, int pos) {
+    public static boolean getBool(final byte b, final int pos) {
         return (((b & 0xFF) >>> pos) & 1) == 1;
     }
 
-    public static boolean isBitSet(short s, int pos) {
+    public static boolean isBitSet(final short s, final int pos) {
         return (((s & 0xFFFF) >>> pos) & 1) == 1;
     }
 
-    public static byte setBit(byte b, int pos) {
+    public static byte setBit(final byte b, final int pos) {
         return (byte) (b | (1 << pos));
     }
 
-    public static byte clrBit(byte b, int pos) {
+    public static byte clrBit(final byte b, final int pos) {
         return (byte) (b & ~(1 << pos));
     }
 
-    public static byte setBit(byte b, int pos, boolean bit) {
+    public static byte setBit(final byte b, final int pos, final boolean bit) {
         if (bit) {
             return setBit(b, pos);
         } else {
@@ -44,7 +44,7 @@ public class Bits {
         }
     }
 
-    public static byte setBit(byte b, int pos, int bit) {
+    public static byte setBit(final byte b, final int pos, final int bit) {
         return setBit(b, pos, bit != 0);
     }
 
@@ -57,7 +57,7 @@ public class Bits {
      *                 between 0 and 7, and must not be greater then @startBit.
      * @return Return a byte with only given bit range set.
      */
-    public static byte getSetBits(int startBit, int endBit) {
+    public static byte getSetBits(final int startBit, final int endBit) {
         assert startBit <= 7;
         assert endBit <= 7;
         assert startBit >= endBit;
@@ -81,7 +81,7 @@ public class Bits {
      *                 started on bit 0.
      * @return Return a range of bits extracted from a input byte.
      */
-    public static byte getBitsFromByte(final byte in, int startBit, int endBit, boolean shift) {
+    public static byte getBitsFromByte(final byte in, final int startBit, final int endBit, final boolean shift) {
         assert startBit <= 7;
         assert endBit <= 7;
         assert startBit >= endBit;
@@ -105,7 +105,7 @@ public class Bits {
      * @param endBit    The bit position of in the end byte the extraction should be end.
      * @return Return a value that contains the bits in the given range.
      */
-    public static long getBitsFromBytes(final byte[] data, int startByte, int startBit, int endByte, int endBit) {
+    public static long getBitsFromBytes(final byte[] data, final int startByte, final int startBit, final int endByte, final int endBit) {
         long extr = 0;
 
         if (startByte == endByte) {
@@ -142,7 +142,7 @@ public class Bits {
      * @param size   The number of bits that should be taken.
      * @return Return a value that contains the bits in the given range.
      */
-    public static long getBitsFromBytes(final byte[] data, int offset, int size) {
+    public static long getBitsFromBytes(final byte[] data, final int offset, final int size) {
         final int startByte = offset / 8;
         final int startBit = 7 - (offset % 8);
         final int absoluteEndBit = offset + size - 1; // do not forget the "- 1", because the end is inclusive.
@@ -152,10 +152,10 @@ public class Bits {
         return getBitsFromBytes(data, startByte, startBit, endByte, endBit);
     }
 
-    private static long setBitsOfBytesUtil(long value, byte[] data, int pos, int startBit, int endBit) {
-        int numOfBits = startBit + 1 - endBit;
+    private static long setBitsOfBytesUtil(final long value, final byte[] data, final int pos, final int startBit, final int endBit) {
+        final int numOfBits = startBit + 1 - endBit;
         data[pos] &= ~getSetBits(startBit, endBit);
-        long mask = 0xFF & getSetBits(numOfBits - 1, 0);
+        final long mask = 0xFF & getSetBits(numOfBits - 1, 0);
         data[pos] |= (value & mask) << endBit;
         return value >>> numOfBits;
     }
@@ -172,7 +172,7 @@ public class Bits {
      * @param endBit    The bit position of in the end byte the insertion should be end.
      * @throws IllegalArgumentException The value does not fit in the given bit range.
      */
-    public static void setBitsOfBytes(long value, byte[] data, int startByte, int startBit, int endByte, int endBit) {
+    public static void setBitsOfBytes(final long value, final byte[] data, final int startByte, final int startBit, final int endByte, final int endBit) {
         long val = value;
 
         if (startByte == endByte) {
@@ -202,7 +202,7 @@ public class Bits {
         }
     }
 
-    public static void setBitsOfBytes(long value, final byte[] data, int offset, int size) {
+    public static void setBitsOfBytes(final long value, final byte[] data, final int offset, final int size) {
         final int startByte = offset / 8;
         final int startBit = 7 - (offset % 8);
         final int absoluteEndBit = offset + size - 1; // do not forget the "- 1", because the end is inclusive.

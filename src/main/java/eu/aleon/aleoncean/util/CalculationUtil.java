@@ -12,7 +12,7 @@ package eu.aleon.aleoncean.util;
 
 public class CalculationUtil {
 
-    public static <T extends Comparable<T>> T fitInRange(T value, T min, T max) {
+    public static <T extends Comparable<T>> T fitInRange(final T value, final T min, final T max) {
         if (value.compareTo(min) < 0) {
             return min;
         } else if (value.compareTo(max) > 0) {
@@ -22,7 +22,7 @@ public class CalculationUtil {
         }
     }
 
-    public static double rangeToScale(long rawValue, long rangeMin, long rangeMax, double scaleMin, double scaleMax) {
+    public static double rangeToScale(final long rawValue, final long rangeMin, final long rangeMax, final double scaleMin, final double scaleMax) {
         final double multiplier = (scaleMax - scaleMin) / (rangeMax - rangeMin);
         final double devValue = multiplier * (rawValue - rangeMin) + scaleMin;
         return fitInRange(devValue, scaleMin, scaleMax);
@@ -38,7 +38,7 @@ public class CalculationUtil {
      * @param rangeMax The maximum value of range.
      * @return The calculated range value.
      */
-    public static long scaleToRange(double devValue, double scaleMin, double scaleMax, long rangeMin, long rangeMax) {
+    public static long scaleToRange(final double devValue, final double scaleMin, final double scaleMax, final long rangeMin, final long rangeMax) {
         final double multiplier = (rangeMax - rangeMin) / (scaleMax - scaleMin);
         final double rawValue = multiplier * (devValue - scaleMin) + rangeMin;
 

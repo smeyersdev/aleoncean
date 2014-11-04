@@ -31,9 +31,9 @@ public class UserDataEEPA504 extends UserData4BS {
     private final double temperatureScaleMin;
     private final double temperatureScaleMax;
 
-    public UserDataEEPA504(byte[] eepData,
-                           double humidityScaleMin, double humidityScaleMax,
-                           double temperatureScaleMin, double temperatureScaleMax) {
+    public UserDataEEPA504(final byte[] eepData,
+                           final double humidityScaleMin, final double humidityScaleMax,
+                           final double temperatureScaleMin, final double temperatureScaleMax) {
         super(eepData);
         this.humidityScaleMin = humidityScaleMin;
         this.humidityScaleMax = humidityScaleMax;

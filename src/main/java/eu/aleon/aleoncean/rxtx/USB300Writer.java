@@ -30,7 +30,7 @@ public class USB300Writer implements Runnable {
     private final DataOutputStream out;
     private final BlockingQueue<byte[]> queue;
 
-    public USB300Writer(OutputStream out, BlockingQueue<byte[]> queue) {
+    public USB300Writer(final OutputStream out, final BlockingQueue<byte[]> queue) {
         this.out = new DataOutputStream(out);
         this.queue = queue;
     }
@@ -39,7 +39,7 @@ public class USB300Writer implements Runnable {
     public void run() {
         try {
             out.flush();
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             LOGGER.warn("Flush failed.", ex);
         }
 
@@ -59,10 +59,10 @@ public class USB300Writer implements Runnable {
                     out.write(data);
                     out.flush();
                 }
-            } catch (InterruptedException ex) {
+            } catch (final InterruptedException ex) {
                 LOGGER.warn("Take data from queue failed.", ex);
                 running = false;
-            } catch (IOException ex) {
+            } catch (final IOException ex) {
                 LOGGER.warn("Write or flush failed.", ex);
             }
         }

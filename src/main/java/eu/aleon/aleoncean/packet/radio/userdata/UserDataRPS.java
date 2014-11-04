@@ -36,7 +36,7 @@ public class UserDataRPS extends UserData {
         this.nu = nu;
     }
 
-    public UserDataRPS(byte[] data, final T21State t21, final NUState nu) {
+    public UserDataRPS(final byte[] data, final T21State t21, final NUState nu) {
         super(data);
         assert data.length == DATA_LENGTH;
 

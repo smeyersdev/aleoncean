@@ -29,7 +29,7 @@ public class ResponsePacket extends ESP3Packet {
     }
 
     @Override
-    public void setData(byte[] data) {
+    public void setData(final byte[] data) {
         int pos = 0;
 
         returnCode = data[pos++];
@@ -49,7 +49,7 @@ public class ResponsePacket extends ESP3Packet {
                                   + rawResponseData.length;
 
         final byte[] rawData = new byte[rawDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(getReturnCode());
@@ -63,7 +63,7 @@ public class ResponsePacket extends ESP3Packet {
         return returnCode;
     }
 
-    public void setReturnCode(byte returnCode) {
+    public void setReturnCode(final byte returnCode) {
         this.returnCode = returnCode;
     }
 

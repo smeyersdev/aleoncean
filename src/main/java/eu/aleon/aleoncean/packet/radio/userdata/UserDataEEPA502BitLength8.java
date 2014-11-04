@@ -25,7 +25,7 @@ public class UserDataEEPA502BitLength8 extends UserDataEEPA502 {
      * @param tempScaleMin
      * @param tempScaleMax
      */
-    public UserDataEEPA502BitLength8(double tempScaleMin, double tempScaleMax){
+    public UserDataEEPA502BitLength8(final double tempScaleMin, final double tempScaleMax){
         super(1, 7, 1, 0, TEMPERATURE_RANGE_MIN, TEMPERATURE_RANGE_MAX, tempScaleMin, tempScaleMax);
     }
 
@@ -36,8 +36,8 @@ public class UserDataEEPA502BitLength8 extends UserDataEEPA502 {
      * @param tempScaleMin
      * @param tempScaleMax
      */
-    public UserDataEEPA502BitLength8(byte[] eepData,
-                                     double tempScaleMin, double tempScaleMax) {
+    public UserDataEEPA502BitLength8(final byte[] eepData,
+                                     final double tempScaleMin, final double tempScaleMax) {
         super(eepData, 1, 7, 1, 0, TEMPERATURE_RANGE_MIN, TEMPERATURE_RANGE_MAX, tempScaleMin, tempScaleMax);
     }
 

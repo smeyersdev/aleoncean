@@ -53,7 +53,7 @@ public class CoRdVersionResponseOk extends Response {
                                           + appDescription.length;
 
         final byte[] rawResponseData = new byte[rawResponseDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawResponseData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawResponseData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(getAppVersionMain());
@@ -79,7 +79,7 @@ public class CoRdVersionResponseOk extends Response {
     public void setResponseData(final byte[] responseData) {
         byte[] tmp;
 
-        ByteBuffer bb = ByteBuffer.wrap(responseData);
+        final ByteBuffer bb = ByteBuffer.wrap(responseData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         setAppVersionMain(bb.get());
@@ -116,7 +116,7 @@ public class CoRdVersionResponseOk extends Response {
         return appVersionMain;
     }
 
-    public void setAppVersionMain(byte appVersionMain) {
+    public void setAppVersionMain(final byte appVersionMain) {
         this.appVersionMain = appVersionMain;
     }
 
@@ -124,7 +124,7 @@ public class CoRdVersionResponseOk extends Response {
         return appVersionBeta;
     }
 
-    public void setAppVersionBeta(byte appVersionBeta) {
+    public void setAppVersionBeta(final byte appVersionBeta) {
         this.appVersionBeta = appVersionBeta;
     }
 
@@ -132,7 +132,7 @@ public class CoRdVersionResponseOk extends Response {
         return appVersionAlpha;
     }
 
-    public void setAppVersionAlpha(byte appVersionAlpha) {
+    public void setAppVersionAlpha(final byte appVersionAlpha) {
         this.appVersionAlpha = appVersionAlpha;
     }
 
@@ -140,7 +140,7 @@ public class CoRdVersionResponseOk extends Response {
         return appVersionBuild;
     }
 
-    public void setAppVersionBuild(byte appVersionBuild) {
+    public void setAppVersionBuild(final byte appVersionBuild) {
         this.appVersionBuild = appVersionBuild;
     }
 
@@ -148,7 +148,7 @@ public class CoRdVersionResponseOk extends Response {
         return apiVersionMain;
     }
 
-    public void setApiVersionMain(byte apiVersionMain) {
+    public void setApiVersionMain(final byte apiVersionMain) {
         this.apiVersionMain = apiVersionMain;
     }
 
@@ -156,7 +156,7 @@ public class CoRdVersionResponseOk extends Response {
         return apiVersionBeta;
     }
 
-    public void setApiVersionBeta(byte apiVersionBeta) {
+    public void setApiVersionBeta(final byte apiVersionBeta) {
         this.apiVersionBeta = apiVersionBeta;
     }
 
@@ -164,7 +164,7 @@ public class CoRdVersionResponseOk extends Response {
         return apiVersionAlpha;
     }
 
-    public void setApiVersionAlpha(byte apiVersionAlpha) {
+    public void setApiVersionAlpha(final byte apiVersionAlpha) {
         this.apiVersionAlpha = apiVersionAlpha;
     }
 
@@ -172,7 +172,7 @@ public class CoRdVersionResponseOk extends Response {
         return apiVersionBuild;
     }
 
-    public void setApiVersionBuild(byte apiVersionBuild) {
+    public void setApiVersionBuild(final byte apiVersionBuild) {
         this.apiVersionBuild = apiVersionBuild;
     }
 

@@ -47,8 +47,8 @@ public class SaWrLearnMode extends SmartAckCommandPacket {
     }
 
     @Override
-    public void setSmartAckData(byte[] smartAckData) {
-        ByteBuffer bb = ByteBuffer.wrap(smartAckData);
+    public void setSmartAckData(final byte[] smartAckData) {
+        final ByteBuffer bb = ByteBuffer.wrap(smartAckData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         setEnabled(bb.get() != 0);
@@ -83,7 +83,7 @@ public class SaWrLearnMode extends SmartAckCommandPacket {
                                           + 4 /* timeout */;
 
         final byte[] rawSmartAckData = new byte[rawSmartAckDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawSmartAckData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawSmartAckData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         final byte rawEnable = isEnabled() ? (byte) 1 : (byte) 0;

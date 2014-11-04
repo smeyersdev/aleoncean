@@ -40,11 +40,11 @@ public final class EnOceanId implements Comparable<EnOceanId> {
         this(id.getBytes());
     }
 
-    public EnOceanId(byte a, byte b, byte c, byte d) {
+    public EnOceanId(final byte a, final byte b, final byte c, final byte d) {
         fill(new byte[]{a, b, c, d});
     }
 
-    public EnOceanId(final byte[] d, int startPos) {
+    public EnOceanId(final byte[] d, final int startPos) {
         fill(d, startPos);
     }
 
@@ -72,7 +72,7 @@ public final class EnOceanId implements Comparable<EnOceanId> {
         fill(id, 0);
     }
 
-    public void fill(final byte[] d, int startPos) {
+    public void fill(final byte[] d, final int startPos) {
         System.arraycopy(d, startPos, id, 0, id.length);
     }
 
@@ -80,7 +80,7 @@ public final class EnOceanId implements Comparable<EnOceanId> {
         bb.get(id);
     }
 
-    public void fill(long id) {
+    public void fill(final long id) {
         this.id[0] = (byte) ((id & 0xFF000000L) >>> 24);
         this.id[1] = (byte) ((id & 0x00FF0000L) >>> 16);
         this.id[2] = (byte) ((id & 0x0000FF00L) >>> 8);
@@ -88,7 +88,7 @@ public final class EnOceanId implements Comparable<EnOceanId> {
     }
 
     public void fill(final String id) throws IllegalArgumentException, NumberFormatException {
-        String[] numbers = id.trim().split("[:]");
+        final String[] numbers = id.trim().split("[:]");
         if (numbers.length != this.id.length) {
             throw new IllegalArgumentException("Invalid EnOceanId string.");
         }
@@ -125,13 +125,13 @@ public final class EnOceanId implements Comparable<EnOceanId> {
         return isBaseId(this);
     }
 
-    public static boolean isBaseId(EnOceanId id) {
+    public static boolean isBaseId(final EnOceanId id) {
         final long baseId = id.getLong();
         return baseId >= BASEID_MIN && baseId <= BASEID_MAX;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -141,7 +141,7 @@ public final class EnOceanId implements Comparable<EnOceanId> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        EnOceanId other = (EnOceanId) obj;
+        final EnOceanId other = (EnOceanId) obj;
         return Arrays.equals(id, other.id);
     }
 
@@ -156,7 +156,7 @@ public final class EnOceanId implements Comparable<EnOceanId> {
     }
 
     @Override
-    public int compareTo(EnOceanId o) {
+    public int compareTo(final EnOceanId o) {
         for (int i = 0; i < id.length; ++i) {
             if (id[i] < o.id[i]) {
                 return -1;

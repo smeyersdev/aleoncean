@@ -19,7 +19,7 @@ public class UserDataEEPA50220 extends UserDataEEPA502BitLength10 {
     private static final double TEMPERATURE_SCALE_MIN = -10;
     private static final double TEMPERATURE_SCALE_MAX = 41.2;
 
-    public UserDataEEPA50220(byte[] eepData) {
+    public UserDataEEPA50220(final byte[] eepData) {
         super(eepData, TEMPERATURE_SCALE_MIN, TEMPERATURE_SCALE_MAX);
     }
 }

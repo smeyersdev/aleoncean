@@ -21,19 +21,19 @@ public class IllegalDeviceParameterException extends Exception {
     public IllegalDeviceParameterException() {
     }
 
-    public IllegalDeviceParameterException(String message) {
+    public IllegalDeviceParameterException(final String message) {
         super(message);
     }
 
-    public IllegalDeviceParameterException(String message, Throwable cause) {
+    public IllegalDeviceParameterException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public IllegalDeviceParameterException(Throwable cause) {
+    public IllegalDeviceParameterException(final Throwable cause) {
         super(cause);
     }
 
-    public IllegalDeviceParameterException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public IllegalDeviceParameterException(final String message, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

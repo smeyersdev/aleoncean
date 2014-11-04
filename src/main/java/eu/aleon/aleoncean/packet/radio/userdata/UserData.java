@@ -23,11 +23,11 @@ public abstract class UserData {
 
     private byte[] userData;
 
-    public UserData(int size) {
+    public UserData(final int size) {
         userData = new byte[size];
     }
 
-    public UserData(byte[] data) {
+    public UserData(final byte[] data) {
         this.userData = data;
     }
 
@@ -35,57 +35,57 @@ public abstract class UserData {
         return userData;
     }
 
-    public void setUserData(byte[] userData) {
+    public void setUserData(final byte[] userData) {
         this.userData = userData;
     }
 
-    protected int convPosDbToReal(int dbPos) {
+    protected int convPosDbToReal(final int dbPos) {
         return convPosDbToReal(userData, dbPos);
     }
 
-    public static int convPosDbToReal(final byte[] userData, int dbPos) {
+    public static int convPosDbToReal(final byte[] userData, final int dbPos) {
         return userData.length - 1 - dbPos;
     }
 
-    protected byte getDb(int dbPos) {
+    protected byte getDb(final int dbPos) {
         return getDb(userData, dbPos);
     }
 
-    public static byte getDb(final byte[] userData, int dbPos) {
+    public static byte getDb(final byte[] userData, final int dbPos) {
         return userData[convPosDbToReal(userData, dbPos)];
     }
 
-    protected void setDb(int dbPos, byte value) {
+    protected void setDb(final int dbPos, final byte value) {
         setDb(userData, dbPos, value);
     }
 
-    public static void setDb(final byte[] userData, int dbPos, byte value) {
+    public static void setDb(final byte[] userData, final int dbPos, final byte value) {
         userData[convPosDbToReal(userData, dbPos)] = value;
     }
 
-    protected int getDataBit(int db, int bit) {
+    protected int getDataBit(final int db, final int bit) {
         return getDataBit(userData, db, bit);
     }
 
-    public static int getDataBit(final byte[] userData, int db, int bit) {
+    public static int getDataBit(final byte[] userData, final int db, final int bit) {
         return Bits.getBit(getDb(userData, db), bit);
     }
 
-    protected void setDataBit(int db, int bit, boolean value) {
+    protected void setDataBit(final int db, final int bit, final boolean value) {
         final int pos = convPosDbToReal(db);
         userData[pos] = Bits.setBit(userData[pos], bit, value);
     }
 
-    protected void setDataBit(int db, int bit, int value) {
+    protected void setDataBit(final int db, final int bit, final int value) {
         final int pos = convPosDbToReal(db);
         userData[pos] = Bits.setBit(userData[pos], bit, value);
     }
 
-    protected long getDataRange(int startDB, int startBit, int endDB, int endBit) {
+    protected long getDataRange(final int startDB, final int startBit, final int endDB, final int endBit) {
         return getDataRange(userData, startDB, startBit, endDB, endBit);
     }
 
-    public static long getDataRange(final byte[] userData, int startDB, int startBit, int endDB, int endBit) {
+    public static long getDataRange(final byte[] userData, final int startDB, final int startBit, final int endDB, final int endBit) {
         assert startDB >= endDB || (startDB == endDB && startBit >= endBit);
         assert startDB <= userData.length - 1;
 
@@ -95,7 +95,7 @@ public abstract class UserData {
         return Bits.getBitsFromBytes(userData, realStartByte, startBit, realEndByte, endBit);
     }
 
-    protected void setDataRange(long value, int startDB, int startBit, int endDB, int endBit) {
+    protected void setDataRange(final long value, final int startDB, final int startBit, final int endDB, final int endBit) {
         // e.g. db3.5 ... db2.7
         assert startDB >= endDB || (startDB == endDB && startBit >= endBit);
         assert startDB <= userData.length - 1;
@@ -121,9 +121,9 @@ public abstract class UserData {
      * @throws UserDataScaleValueException This exception is raised if the value extracted from given bit range does
      *                                     not fit in range.
      */
-    protected double getScaleValue(int startDB, int startBit, int endDB, int endBit,
-                                   long rangeMin, long rangeMax,
-                                   double scaleMin, double scaleMax)
+    protected double getScaleValue(final int startDB, final int startBit, final int endDB, final int endBit,
+                                   final long rangeMin, final long rangeMax,
+                                   final double scaleMin, final double scaleMax)
             throws UserDataScaleValueException {
         final long raw = getDataRange(startDB, startBit, endDB, endBit);
         return getScaleValue(raw, rangeMin, rangeMax, scaleMin, scaleMax);
@@ -140,9 +140,9 @@ public abstract class UserData {
      * @return Return a scaled value that does fit in given range.
      * @throws UserDataScaleValueException This exception is raised if the given value does not fit in range.
      */
-    protected double getScaleValue(long raw,
-                                   long rangeMin, long rangeMax,
-                                   double scaleMin, double scaleMax)
+    protected double getScaleValue(final long raw,
+                                   final long rangeMin, final long rangeMax,
+                                   final double scaleMin, final double scaleMax)
             throws UserDataScaleValueException {
 
         /*
@@ -168,9 +168,9 @@ public abstract class UserData {
      * @return Return a raw value that does fit in given range.
      * @throws UserDataScaleValueException This exception is raised if the given value does not fit in range.
      */
-    protected long getRangeValue(double scale,
-                                 double scaleMin, double scaleMax,
-                                 long rangeMin, long rangeMax)
+    protected long getRangeValue(final double scale,
+                                 final double scaleMin, final double scaleMax,
+                                 final long rangeMin, final long rangeMax)
             throws UserDataScaleValueException {
 
         /*

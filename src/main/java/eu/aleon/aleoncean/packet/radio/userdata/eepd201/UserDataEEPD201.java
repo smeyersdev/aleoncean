@@ -30,7 +30,7 @@ public class UserDataEEPD201 extends UserDataVLD {
     public static final byte CMD_ACTUATOR_MEASUREMENT_QUERY = (byte) 0x06;
     public static final byte CMD_ACTUATOR_MEASUREMENT_RESPONSE = (byte) 0x07;
 
-    public UserDataEEPD201(final byte cmd, int size) {
+    public UserDataEEPD201(final byte cmd, final int size) {
         super(size);
         setCmd(cmd);
     }
@@ -39,7 +39,7 @@ public class UserDataEEPD201 extends UserDataVLD {
         super(data);
     }
 
-    public UserDataEEPD201(final byte cmd, byte[] data) {
+    public UserDataEEPD201(final byte cmd, final byte[] data) {
         super(data);
         setCmd(cmd);
     }

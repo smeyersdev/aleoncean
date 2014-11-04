@@ -44,7 +44,7 @@ public abstract class UserDataEEPF610T2U extends UserDataRPS {
         try {
             final WindowHandlePosition windowHandlePosition = decodePosition((byte) getDataRange(0, 7, 0, 4));
             return windowHandlePosition;
-        } catch (IllegalArgumentException ex) {
+        } catch (final IllegalArgumentException ex) {
             final String msg = "The window handle position seems to be wrong.";
             LOGGER.warn(msg, ex);
             throw new UserDataScaleValueException(msg);
@@ -54,7 +54,7 @@ public abstract class UserDataEEPF610T2U extends UserDataRPS {
     protected final byte getWindowHandlePositionByte(final WindowHandlePosition windowHandlePosition) throws UserDataScaleValueException {
         try {
             return encodePosition(windowHandlePosition);
-        } catch (IllegalArgumentException ex) {
+        } catch (final IllegalArgumentException ex) {
             final String msg = "The window handle position seems to be wrong.";
             LOGGER.warn(msg, ex);
             throw new UserDataScaleValueException(msg);

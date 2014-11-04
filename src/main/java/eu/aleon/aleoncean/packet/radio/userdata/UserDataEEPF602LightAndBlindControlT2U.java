@@ -26,7 +26,7 @@ public class UserDataEEPF602LightAndBlindControlT2U extends UserDataRPS {
         super(T21State.PTM_TYPE2, NUState.UNASSIGNEDMESSAGE);
     }
 
-    public UserDataEEPF602LightAndBlindControlT2U(byte[] eepData) {
+    public UserDataEEPF602LightAndBlindControlT2U(final byte[] eepData) {
         super(eepData, T21State.PTM_TYPE2, NUState.UNASSIGNEDMESSAGE);
     }
 
@@ -58,7 +58,7 @@ public class UserDataEEPF602LightAndBlindControlT2U extends UserDataRPS {
         return buttons;
     }
 
-    public void setNumberOfPressedButtons(PressedButtons buttons) {
+    public void setNumberOfPressedButtons(final PressedButtons buttons) {
         long value;
         if (buttons == PressedButtons.NO_BUTTON) {
             value = 0;

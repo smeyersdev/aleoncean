@@ -69,7 +69,7 @@ public abstract class ByteBuffer {
      * @param buffer The buffer that should be filled with the buffer content.
      * @return Return the length of data put into the supplied buffer.
      */
-    public int get(byte[] buffer) {
+    public int get(final byte[] buffer) {
         return get(buffer, 0, buffer.length);
     }
 
@@ -108,7 +108,7 @@ public abstract class ByteBuffer {
                 ++off;
                 --len;
             }
-        } catch (EOFException ex) {
+        } catch (final EOFException ex) {
             // Nothing to do, the end of the buffer is reached.
         }
         return count;
@@ -142,7 +142,7 @@ public abstract class ByteBuffer {
      * @param buffer The data that should be inserted into the buffer.
      * @return Return the number of bytes copied into the buffer.
      */
-    public int put(byte[] buffer) {
+    public int put(final byte[] buffer) {
         return put(buffer, 0, buffer.length);
     }
 
@@ -181,7 +181,7 @@ public abstract class ByteBuffer {
                 ++off;
                 --len;
             }
-        } catch (BufferOverflowException e) {
+        } catch (final BufferOverflowException e) {
             // Nothing to do, the end of the buffer is reached.
         }
         return count;
@@ -193,7 +193,7 @@ public abstract class ByteBuffer {
      * @param x A 32-bit integer that is put (little-endian) to the buffer.
      * @throws BufferOverflowException if the buffer could not be filled with all four bytes.
      */
-    public void putInt(int x) throws BufferOverflowException {
+    public void putInt(final int x) throws BufferOverflowException {
         put((byte) x);
         put((byte) (x >>> 8));
         put((byte) (x >>> 16));

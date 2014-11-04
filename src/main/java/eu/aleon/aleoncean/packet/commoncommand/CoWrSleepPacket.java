@@ -39,8 +39,8 @@ public class CoWrSleepPacket extends CommonCommandPacket {
     }
 
     @Override
-    public void setCommonCommandData(byte[] commonCommandData) {
-        ByteBuffer bb = ByteBuffer.wrap(commonCommandData);
+    public void setCommonCommandData(final byte[] commonCommandData) {
+        final ByteBuffer bb = ByteBuffer.wrap(commonCommandData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         setDeepSleepPeriod(bb.getInt());
@@ -51,7 +51,7 @@ public class CoWrSleepPacket extends CommonCommandPacket {
         final int rawCommonCommandDataLength = 4 /* deep sleep period */;
 
         final byte[] rawCommonCommandData = new byte[rawCommonCommandDataLength];
-        ByteBuffer bb = ByteBuffer.wrap(rawCommonCommandData);
+        final ByteBuffer bb = ByteBuffer.wrap(rawCommonCommandData);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.putInt(getDeepSleepPeriod());
@@ -75,7 +75,7 @@ public class CoWrSleepPacket extends CommonCommandPacket {
         return deepSleepPeriod;
     }
 
-    public void setDeepSleepPeriod(int deepSleepPeriod) {
+    public void setDeepSleepPeriod(final int deepSleepPeriod) {
         this.deepSleepPeriod = CalculationUtil.fitInRange(deepSleepPeriod, DEEP_SLEEP_PERIOD_RAW_VALUE_MIN, DEEP_SLEEP_PERIOD_RAW_VALUE_MAX);
     }
 

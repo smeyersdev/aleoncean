@@ -30,7 +30,7 @@ public class UserDataEEPA50703 extends UserData4BS {
     public static final double ILLUMINATION_SCALE_MAX = 1000;
     public static final Unit ILLUMINATION_UNIT = Unit.LUX;
 
-    public UserDataEEPA50703(byte[] eepData) {
+    public UserDataEEPA50703(final byte[] eepData) {
         super(eepData);
     }
 

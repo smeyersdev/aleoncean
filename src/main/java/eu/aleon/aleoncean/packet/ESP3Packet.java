@@ -74,7 +74,7 @@ public class ESP3Packet {
     public ESP3Packet() {
     }
 
-    public ESP3Packet(byte packetType) {
+    public ESP3Packet(final byte packetType) {
         setPacketType(packetType);
     }
 
@@ -130,7 +130,7 @@ public class ESP3Packet {
         final CRC8 crc = new CRC8();
 
         final byte[] raw = new byte[rawLength];
-        ByteBuffer bb = ByteBuffer.wrap(raw);
+        final ByteBuffer bb = ByteBuffer.wrap(raw);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         bb.put(SYNC_BYTE);
@@ -170,7 +170,7 @@ public class ESP3Packet {
         this.optionalData = optionalData;
     }
 
-    public Response inspectResponsePacket(ResponsePacket packet) throws UnknownResponseException {
+    public Response inspectResponsePacket(final ResponsePacket packet) throws UnknownResponseException {
         throw new UnknownResponseException();
     }
 
@@ -202,8 +202,8 @@ public class ESP3Packet {
 
         final CRC8 crcHeader = new CRC8();
         final CRC8 crcData = new CRC8();
-        int lenData = getLength(raw[POS_DATA_LENGTH_HIGH], raw[POS_DATA_LENGTH_LOW]);
-        int lenOptional = getLength(raw[POS_OPTIONAL_LENGTH]);
+        final int lenData = getLength(raw[POS_DATA_LENGTH_HIGH], raw[POS_DATA_LENGTH_LOW]);
+        final int lenOptional = getLength(raw[POS_OPTIONAL_LENGTH]);
 
         crcHeader.update(raw, HEADER_START, HEADER_SIZE);
         if (crcHeader.getValue() != raw[POS_CRC8_HEADER]) {

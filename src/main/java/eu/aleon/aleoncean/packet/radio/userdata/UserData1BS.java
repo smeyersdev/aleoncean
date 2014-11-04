@@ -24,7 +24,7 @@ public class UserData1BS extends UserData {
         super(DATA_LENGTH);
     }
 
-    public UserData1BS(byte[] data) {
+    public UserData1BS(final byte[] data) {
         super(data);
         assert data.length == DATA_LENGTH;
     }

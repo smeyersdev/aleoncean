@@ -26,14 +26,14 @@ public class RockerSwitchState implements Cloneable {
     public RockerSwitchState() {
     }
 
-    public RockerSwitchState(Boolean pressed) {
+    public RockerSwitchState(final Boolean pressed) {
         this(pressed, pressed, pressed, pressed);
     }
 
-    public RockerSwitchState(Boolean pressedAI,
-                             Boolean pressedAO,
-                             Boolean pressedBI,
-                             Boolean pressedBO) {
+    public RockerSwitchState(final Boolean pressedAI,
+                             final Boolean pressedAO,
+                             final Boolean pressedBI,
+                             final Boolean pressedBO) {
         this.buttonPressedAI = pressedAI;
         this.buttonPressedAO = pressedAO;
         this.buttonPressedBI = pressedBI;
@@ -63,7 +63,7 @@ public class RockerSwitchState implements Cloneable {
         }
     }
 
-    public void set(RockerSwitchButton button, Boolean pressed) {
+    public void set(final RockerSwitchButton button, final Boolean pressed) {
         switch (button) {
             case AI:
                 buttonPressedAI = pressed;
@@ -88,7 +88,7 @@ public class RockerSwitchState implements Cloneable {
         try {
             final RockerSwitchState cloned = (RockerSwitchState) super.clone();
             return cloned;
-        } catch (CloneNotSupportedException ex) {
+        } catch (final CloneNotSupportedException ex) {
             final RockerSwitchState cloned = new RockerSwitchState();
             cloned.buttonPressedAI = this.buttonPressedAI;
             cloned.buttonPressedAO = this.buttonPressedAO;

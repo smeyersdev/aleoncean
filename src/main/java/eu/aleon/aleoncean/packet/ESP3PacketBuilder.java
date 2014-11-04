@@ -64,11 +64,11 @@ public class ESP3PacketBuilder {
         this.state = State.READ_SYNC_BYTE;
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
+    public void addPropertyChangeListener(final PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
 
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
+    public void removePropertyChangeListener(final PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
@@ -159,7 +159,7 @@ public class ESP3PacketBuilder {
         return progress;
     }
 
-    public void add(byte b) {
+    public void add(final byte b) {
         buffer.put(b);
         handleBuffer();
     }

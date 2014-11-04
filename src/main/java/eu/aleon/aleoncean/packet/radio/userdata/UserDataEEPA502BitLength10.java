@@ -19,8 +19,8 @@ public class UserDataEEPA502BitLength10 extends UserDataEEPA502 {
     private static final long TEMPERATURE_RANGE_MIN = 1023;
     private static final long TEMPERATURE_RANGE_MAX = 0;
 
-    public UserDataEEPA502BitLength10(byte[] eepData,
-                                      double tempScaleMin, double tempScaleMax) {
+    public UserDataEEPA502BitLength10(final byte[] eepData,
+                                      final double tempScaleMin, final double tempScaleMax) {
         super(eepData, 2, 1, 1, 0, TEMPERATURE_RANGE_MIN, TEMPERATURE_RANGE_MAX, tempScaleMin, tempScaleMax);
     }
 

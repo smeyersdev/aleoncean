@@ -51,7 +51,7 @@ public class RemoteDeviceEEPA50205 extends StandardDevice implements RemoteDevic
         fireParameterChanged(DeviceParameter.TEMPERATURE_CELSIUS, initiation, oldTemperature, temperature);
     }
 
-    private void parseRadioPacket4BS(RadioPacket4BS packet) {
+    private void parseRadioPacket4BS(final RadioPacket4BS packet) {
         if (packet.isTeachIn()) {
             LOGGER.debug("Ignore teach-in packets.");
             return;
@@ -61,13 +61,13 @@ public class RemoteDeviceEEPA50205 extends StandardDevice implements RemoteDevic
 
         try {
             setTemperature(DeviceParameterUpdatedInitiation.RADIO_PACKET, userData.getTemperature());
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("Received temperature is invalid.");
         }
     }
 
     @Override
-    public void parseRadioPacket(RadioPacket packet) {
+    public void parseRadioPacket(final RadioPacket packet) {
         if (packet instanceof RadioPacket4BS) {
             parseRadioPacket4BS((RadioPacket4BS) packet);
         } else {
@@ -81,7 +81,7 @@ public class RemoteDeviceEEPA50205 extends StandardDevice implements RemoteDevic
     }
 
     @Override
-    public Object getByParameter(DeviceParameter parameter) throws IllegalDeviceParameterException {
+    public Object getByParameter(final DeviceParameter parameter) throws IllegalDeviceParameterException {
         switch (parameter) {
             case TEMPERATURE_CELSIUS:
                 return getTemperature();
@@ -91,7 +91,7 @@ public class RemoteDeviceEEPA50205 extends StandardDevice implements RemoteDevic
     }
 
     @Override
-    public void setByParameter(DeviceParameter parameter, Object value) throws IllegalDeviceParameterException {
+    public void setByParameter(final DeviceParameter parameter, final Object value) throws IllegalDeviceParameterException {
         assert DeviceParameter.getSupportedClass(parameter).isAssignableFrom(value.getClass());
         super.setByParameter(parameter, value);
     }

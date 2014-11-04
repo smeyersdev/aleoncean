@@ -31,7 +31,7 @@ public class UserDataEEPA50205 extends UserDataEEPA502BitLength8 {
      *
      * @param eepData
      */
-    public UserDataEEPA50205(byte[] eepData) {
+    public UserDataEEPA50205(final byte[] eepData) {
         super(eepData, TEMPERATURE_SCALE_MIN, TEMPERATURE_SCALE_MAX);
     }
 

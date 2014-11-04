@@ -20,14 +20,14 @@ public class RadioPacketVariableLength extends RadioPacket {
 
     private final int userDataLengthMax;
 
-    public RadioPacketVariableLength(int userDataLengthMin, int userDataLengthMax, byte choice) {
+    public RadioPacketVariableLength(final int userDataLengthMin, final int userDataLengthMax, final byte choice) {
         super(choice);
         this.userDataLengthMin = userDataLengthMin;
         this.userDataLengthMax = userDataLengthMax;
     }
 
     @Override
-    public final void setUserDataRaw(byte[] userData) {
+    public final void setUserDataRaw(final byte[] userData) {
         assert userData.length >= userDataLengthMin;
         assert userData.length <= userDataLengthMax;
         super.setUserDataRaw(userData);

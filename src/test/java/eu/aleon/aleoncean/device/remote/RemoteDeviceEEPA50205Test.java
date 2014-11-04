@@ -58,7 +58,7 @@ public class RemoteDeviceEEPA50205Test {
         try {
             userData.setTemperature(temperatureSet);
             userData.setTeachIn(false);
-        } catch (UserDataScaleValueException e) {
+        } catch (final UserDataScaleValueException e) {
             fail("Throws exception: UserDataScaleValueException");
         }
 
@@ -67,8 +67,8 @@ public class RemoteDeviceEEPA50205Test {
 
         testDevice.parseRadioPacket(packet);
 
-        double temperatureGet = testDevice.getTemperature();
-        double delta = temperatureGet - temperatureSet;
+        final double temperatureGet = testDevice.getTemperature();
+        final double delta = temperatureGet - temperatureSet;
 
         System.out.println("temperatureSet: "+temperatureSet);
         System.out.println("temperatureGet: "+temperatureGet);

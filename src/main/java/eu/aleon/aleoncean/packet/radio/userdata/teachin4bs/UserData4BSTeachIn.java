@@ -58,7 +58,7 @@ public abstract class UserData4BSTeachIn extends UserData4BS {
         return (short) getDataRange(2, 2, 1, 0);
     }
 
-    public void setManufacturerId(short manufacturerId) {
+    public void setManufacturerId(final short manufacturerId) {
         setDataRange(manufacturerId, 2, 2, 1, 0);
     }
 

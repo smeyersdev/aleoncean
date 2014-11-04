@@ -75,7 +75,7 @@ public abstract class StandardDevice implements Device {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj == null) {
             return false;
         }
@@ -133,28 +133,28 @@ public abstract class StandardDevice implements Device {
     }
 
     @Override
-    public Object getByParameter(DeviceParameter parameter) throws IllegalDeviceParameterException {
+    public Object getByParameter(final DeviceParameter parameter) throws IllegalDeviceParameterException {
         throw new IllegalDeviceParameterException(String.format("Given parameter (%s) is not supported.", parameter));
     }
 
     @Override
-    public void setByParameter(DeviceParameter parameter, Object value) throws IllegalDeviceParameterException {
+    public void setByParameter(final DeviceParameter parameter, final Object value) throws IllegalDeviceParameterException {
         throw new IllegalDeviceParameterException(String.format("Given parameter (%s) is not supported.", parameter));
     }
 
     protected abstract void fillParameters(final Set<DeviceParameter> params);
 
     @Override
-    public void addParameterUpdatedListener(DeviceParameterUpdatedListener listener) {
+    public void addParameterUpdatedListener(final DeviceParameterUpdatedListener listener) {
         parameterChangedSupport.addParameterUpdatedListener(listener);
     }
 
     @Override
-    public void removeParameterUpdatedListener(DeviceParameterUpdatedListener listener) {
+    public void removeParameterUpdatedListener(final DeviceParameterUpdatedListener listener) {
         parameterChangedSupport.removeParameterUpdatedListener(listener);
     }
 
-    protected void fireParameterChanged(DeviceParameter parameter, DeviceParameterUpdatedInitiation initiation, Object oldValue, Object newValue) {
+    protected void fireParameterChanged(final DeviceParameter parameter, final DeviceParameterUpdatedInitiation initiation, final Object oldValue, final Object newValue) {
         parameterChangedSupport.fireParameterUpdated(parameter, initiation, oldValue, newValue);
     }
 

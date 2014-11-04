@@ -64,7 +64,7 @@ public class LocalDeviceEEPA53808CMD02 extends StandardDevice implements RemoteD
     }
 
     @Override
-    public void parseRadioPacket(RadioPacket packet) {
+    public void parseRadioPacket(final RadioPacket packet) {
         LOGGER.warn("Ey, I should not receive any packets.");
     }
 
@@ -82,21 +82,21 @@ public class LocalDeviceEEPA53808CMD02 extends StandardDevice implements RemoteD
             userData.setSwitchingCommand(getOn());
 
             send(userData);
-        } catch (NullPointerException ex) {
+        } catch (final NullPointerException ex) {
             LOGGER.debug("Do not send data, caused by null value.");
-        } catch (UserDataScaleValueException ex) {
+        } catch (final UserDataScaleValueException ex) {
             LOGGER.warn("User data value invalid.");
         }
     }
 
     @Override
-    protected void fillParameters(Set<DeviceParameter> params) {
+    protected void fillParameters(final Set<DeviceParameter> params) {
         params.add(DeviceParameter.POSITION_PERCENT);
         params.add(DeviceParameter.SWITCH);
     }
 
     @Override
-    public Object getByParameter(DeviceParameter parameter) throws IllegalDeviceParameterException {
+    public Object getByParameter(final DeviceParameter parameter) throws IllegalDeviceParameterException {
         switch (parameter) {
             case POSITION_PERCENT:
                 return getDimmingValue();
@@ -108,7 +108,7 @@ public class LocalDeviceEEPA53808CMD02 extends StandardDevice implements RemoteD
     }
 
     @Override
-    public void setByParameter(DeviceParameter parameter, Object value) throws IllegalDeviceParameterException {
+    public void setByParameter(final DeviceParameter parameter, final Object value) throws IllegalDeviceParameterException {
         assert DeviceParameter.getSupportedClass(parameter).isAssignableFrom(value.getClass());
         switch (parameter) {
             case POSITION_PERCENT:

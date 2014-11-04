@@ -73,7 +73,7 @@ public class UserDataEEPA50905 extends UserData4BS {
         SCALE_MULTIPLIER_MAP = Collections.unmodifiableMap(map);
     }
 
-    public UserDataEEPA50905(byte[] eepData) {
+    public UserDataEEPA50905(final byte[] eepData) {
         super(eepData);
     }
 
@@ -95,7 +95,7 @@ public class UserDataEEPA50905 extends UserData4BS {
     }
 
     public VOCIdentification getVOCIdentification() throws UserDataScaleValueException {
-        byte range = (byte) getDataRange(1, 7, 1, 0);
+        final byte range = (byte) getDataRange(1, 7, 1, 0);
         final VOCIdentification id = VOC_IDENTIFICATION_MAP.get(range);
         if (id == null) {
             throw new UserDataScaleValueException(String.format("VOC identification unknown (%d).", range));
@@ -104,7 +104,7 @@ public class UserDataEEPA50905 extends UserData4BS {
     }
 
     public double getScaleMultiplier() throws UserDataScaleValueException {
-        int range = (int) getDataRange(0, 1, 0, 0);
+        final int range = (int) getDataRange(0, 1, 0, 0);
         final Float mult = SCALE_MULTIPLIER_MAP.get(range);
         if (mult == null) {
             throw new UserDataScaleValueException(String.format("Scale multiplier unknown (%d).", range));

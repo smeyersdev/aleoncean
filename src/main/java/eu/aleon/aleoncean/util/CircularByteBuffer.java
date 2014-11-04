@@ -47,7 +47,7 @@ public class CircularByteBuffer {
      *
      * @param size The maximum number of data, that should be stored in the buffer.
      */
-    public CircularByteBuffer(int size) {
+    public CircularByteBuffer(final int size) {
         this.size = size;
         buffer = new byte[size];
     }
@@ -79,13 +79,13 @@ public class CircularByteBuffer {
     }
 
     public byte get() {
-        byte b = buffer[readPos];
+        final byte b = buffer[readPos];
         readPos = incrPos(readPos);
         --length;
         return b;
     }
 
-    public void put(byte b) {
+    public void put(final byte b) {
         buffer[writePos] = b;
         writePos = incrPos(writePos);
         ++length;
@@ -115,7 +115,7 @@ public class CircularByteBuffer {
         }
 
         int pos = markPos;
-        byte[] d = new byte[sz];
+        final byte[] d = new byte[sz];
         for (int i = 0; i < sz; ++i) {
             d[i] = buffer[pos];
             pos = incrPos(pos);
