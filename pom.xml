@@ -20,7 +20,7 @@
         <name>aleon GmbH</name>
         <url>https://www.aleon.eu</url>
     </organization>
-  
+
     <developers>
         <developer>
             <id>maggu2810</id>
@@ -102,10 +102,17 @@
 
     </dependencies>
 
+    <scm>
+        <connection>scm:git:git@github.com:aleon-GmbH/aleoncean.git</connection>
+        <developerConnection>scm:git:git@github.com:maggu2810/aleoncean.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/aleon-GmbH/aleoncean</url>
+    </scm>
+
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -157,6 +164,12 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.1</version>
             </plugin>
 
             <plugin>
