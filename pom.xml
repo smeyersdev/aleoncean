@@ -26,7 +26,6 @@
       <id>maggu2810</id>
       <name>Markus Rathgeb</name>
       <email>maggu2810@gmail.com</email>
-      <!--<url></url> -->
       <organization>aleon GmbH</organization>
       <organizationUrl>https://www.aleon.eu</organizationUrl>
       <roles>
@@ -34,31 +33,8 @@
         <role>developer</role>
       </roles>
       <timezone>Europe/Berlin</timezone>
-      <properties>
-        <!--<picUrl></picUrl> -->
-        <!--<gtalk></gtalk> -->
-      </properties>
     </developer>
   </developers>
-
-  <!--
-  <contributors>
-    <contributor>
-      <name></name>
-      <email></email>
-      <url></url>
-      <organization></organization>
-      <organizationUrl></organizationUrl>
-      <roles>
-        <role>tester</role>
-      </roles>
-      <timezone></timezone>
-      <properties>
-        <gtalk></gtalk>
-      </properties>
-    </contributor>
-  </contributors>
-  -->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -176,28 +152,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven-javadoc-plugin.version}</version>
-        <!--
-        <configuration>
-          <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-          <docletArtifact>
-            <groupId>org.umlgraph</groupId>
-            <artifactId>umlgraph</artifactId>
-            <version>${umlgraph.version}</version>
-          </docletArtifact>
-          <additionalparam>
-            -all
-            -views
-            -attributes -visibility -types
-            -inferrel
-            -inferdep
-            -quiet
-            -hide java.*
-            -collpackages java.util.*
-            -qualify
-            -postfixpackage
-          </additionalparam>
-        </configuration>
-        -->
       </plugin>
 
     </plugins>
