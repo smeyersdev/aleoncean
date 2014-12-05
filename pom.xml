@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>eu.aleon</groupId>
   <artifactId>aleoncean</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>aleoncean</name>
   <description>A java library to access an EnOcean (http://www.enocean.com/) USB300 serial device using ESP3.</description>
 
@@ -75,7 +74,7 @@
     <url>https://github.com/aleon-GmbH/aleoncean</url>
     <connection>scm:git:git@github.com:aleon-GmbH/aleoncean.git</connection>
     <developerConnection>scm:git:git@github.com:aleon-GmbH/aleoncean.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>aleoncean-1.0</tag>
   </scm>
 
   <build>
