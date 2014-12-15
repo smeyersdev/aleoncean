@@ -5,6 +5,11 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Note for all commercial users of this library:
+ * Please contact the EnOcean Alliance (http://www.enocean-alliance.org/)
+ * about a possible requirement to become member of the alliance to use the
+ * EnOcean protocol implementations.
+ *
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
  */
