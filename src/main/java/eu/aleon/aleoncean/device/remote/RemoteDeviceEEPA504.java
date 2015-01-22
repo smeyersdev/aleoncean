@@ -12,6 +12,7 @@
  *
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
+ *    Stephan Meyer - make it an abstract class
  */
 package eu.aleon.aleoncean.device.remote;
 
@@ -34,7 +35,7 @@ import eu.aleon.aleoncean.rxtx.ESP3Connector;
 
 /**
  * Abstract base class for EEP A504.. 
- * 
+ * @author Markus Rathgeb <maggu2810@gmail.com>
  * @author Stephan Meyer <smeyersdev@gmail.com>
  */
 public abstract class RemoteDeviceEEPA504 extends StandardDevice implements RemoteDevice {

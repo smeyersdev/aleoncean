@@ -12,6 +12,7 @@
  *
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
+ *    Stephan Meyer - split out code for EPP A5-04-02
  */
 package eu.aleon.aleoncean.device.remote;
 

@@ -12,6 +12,7 @@
  *
  * Contributors:
  *    Markus Rathgeb - initial API and implementation and/or initial documentation
+ *    Stephan Meyer - split out code for EPP A5-04-01
  */
 package eu.aleon.aleoncean.device.remote;
 
@@ -23,6 +24,7 @@ import eu.aleon.aleoncean.rxtx.ESP3Connector;
 
 /**
  * Implementation for EPP A5-04-01.
+ * @author Markus Rathgeb <maggu2810@gmail.com>
  * @author Stephan Meyer <smeyersdev@gmail.com>
  */
 public class RemoteDeviceEEPA50401 extends RemoteDeviceEEPA504 {
